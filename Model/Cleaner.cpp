@@ -34,6 +34,7 @@ Cleaner & Cleaner::operator = ( const Cleaner & unCleaner )
 // Algorithme :
 //
 {
+    return *this;
 } //----- Fin de operator =
 
 

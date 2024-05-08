@@ -34,6 +34,7 @@ Controller & Controller::operator = ( const Controller & unController )
 // Algorithme :
 //
 {
+    return *this;
 } //----- Fin de operator =
 
 

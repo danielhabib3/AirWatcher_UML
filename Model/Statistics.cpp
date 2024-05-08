@@ -34,6 +34,7 @@ Statistics & Statistics::operator = ( const Statistics & unStatistics )
 // Algorithme :
 //
 {
+    return *this;
 } //----- Fin de operator =
 
 

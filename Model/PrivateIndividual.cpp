@@ -34,6 +34,7 @@ PrivateIndividual & PrivateIndividual::operator = ( const PrivateIndividual & un
 // Algorithme :
 //
 {
+    return *this;
 } //----- Fin de operator =
 
 

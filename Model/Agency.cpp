@@ -34,6 +34,7 @@ Agency & Agency::operator = ( const Agency & unAgency )
 // Algorithme :
 //
 {
+    return *this;
 } //----- Fin de operator =
 
 

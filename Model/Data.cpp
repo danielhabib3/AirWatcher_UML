@@ -34,6 +34,7 @@ Data & Data::operator = ( const Data & unData )
 // Algorithme :
 //
 {
+    return *this;
 } //----- Fin de operator =
 
 

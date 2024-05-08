@@ -34,6 +34,7 @@ Sensor & Sensor::operator = ( const Sensor & unSensor )
 // Algorithme :
 //
 {
+    return *this;
 } //----- Fin de operator =
 
 

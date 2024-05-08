@@ -34,6 +34,7 @@ View & View::operator = ( const View & unView )
 // Algorithme :
 //
 {
+    return *this;
 } //----- Fin de operator =
 
 

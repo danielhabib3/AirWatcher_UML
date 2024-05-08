@@ -11,6 +11,7 @@
 #define PRIVATEINDIVIDUAL_H
 
 //--------------------------------------------------- Interfaces utilisées
+#include "User.h"
 
 //------------------------------------------------------------- Constantes
 

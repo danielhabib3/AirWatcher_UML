@@ -34,6 +34,7 @@ User & User::operator = ( const User & unUser )
 // Algorithme :
 //
 {
+    return *this;
 } //----- Fin de operator =
 
 

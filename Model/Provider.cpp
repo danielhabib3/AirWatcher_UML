@@ -34,6 +34,7 @@ Provider & Provider::operator = ( const Provider & unProvider )
 // Algorithme :
 //
 {
+    return *this;
 } //----- Fin de operator =
 
 

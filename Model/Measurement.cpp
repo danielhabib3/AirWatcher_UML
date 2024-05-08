@@ -34,6 +34,7 @@ Measurement & Measurement::operator = ( const Measurement & unMeasurement )
 // Algorithme :
 //
 {
+    return *this;
 } //----- Fin de operator =
 
 

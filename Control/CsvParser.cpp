@@ -34,6 +34,7 @@ CsvParser & CsvParser::operator = ( const CsvParser & unCsvParser )
 // Algorithme :
 //
 {
+    return *this;
 } //----- Fin de operator =
 
 
