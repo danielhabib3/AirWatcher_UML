@@ -22,11 +22,31 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type CsvParser::Méthode ( liste des paramètres )
+vector<Sensor*> CsvParser::createSensors (  )
 // Algorithme :
 //
-//{
-//} //----- Fin de Méthode
+{
+    ifstream fic ("./dataset/sensors.csv");
+    if (!fic.is_open()) {
+        cerr << "Erreur lors de l'ouverture du fichier." << endl;
+    }
+    string ligne;
+    string sensorIdParsed;
+    string latitudeParsed;
+    string longitudeParsed;
+    vector<Sensor*> sensors;
+
+    while(getline(fic, ligne))
+    {
+        stringstream ss(ligne);
+        getline(ss, sensorIdParsed, ';');
+        getline(ss, latitudeParsed, ';');
+        getline(ss, longitudeParsed, ';');
+        Sensor* sensor = new Sensor(sensorIdParsed, stod(latitudeParsed), stod(longitudeParsed));
+        sensors.push_back(sensor);
+    }
+    return sensors;
+} //----- Fin de Méthode
 
 
 //------------------------------------------------- Surcharge d'opérateurs

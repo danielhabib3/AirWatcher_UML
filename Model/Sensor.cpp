@@ -49,7 +49,7 @@ Sensor::Sensor ( const Sensor & unSensor )
 } //----- Fin de Sensor (constructeur de copie)
 
 
-Sensor::Sensor ( )
+Sensor::Sensor ( string unSensorId, double uneLatitude, double uneLongitude ) : sensorId(unSensorId), latitude(uneLatitude), longitude(uneLongitude)
 // Algorithme :
 //
 {
@@ -67,6 +67,28 @@ Sensor::~Sensor ( )
     cout << "Appel au destructeur de <Sensor>" << endl;
 #endif
 } //----- Fin de ~Sensor
+
+//-------------------------------------------- GETTERS - SETTERS
+string Sensor::getSensorId ( ) const
+// Algorithme :
+//
+{
+    return sensorId;
+} //----- Fin de Méthode
+
+double Sensor::getLatitude ( ) const
+// Algorithme :
+//
+{
+    return latitude;
+} //----- Fin de Méthode
+
+double Sensor::getLongitude ( ) const
+// Algorithme :
+//
+{
+    return longitude;
+} //----- Fin de Méthode
 
 
 //------------------------------------------------------------------ PRIVE

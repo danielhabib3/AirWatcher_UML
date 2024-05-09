@@ -11,6 +11,12 @@
 #define DATA_H
 
 //--------------------------------------------------- Interfaces utilisées
+#include "Sensor.h"
+#include "Cleaner.h"
+#include "Provider.h"
+#include "Measurement.h"
+#include "PrivateIndividual.h"
+#include <vector>
 
 //------------------------------------------------------------- Constantes
 
@@ -68,6 +74,16 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
+
+private:
+//----------------------------------------------------- Méthodes privées
+
+//----------------------------------------------------- Attributs privés
+    vector<Sensor*> allSensors;
+    vector<Cleaner*> allCleaners;
+    vector<Measurement*> allMeasurements;
+    vector<Provider*> allProviders;
+    vector<PrivateIndividual*> allPrivateIndividuals;
 
 };
 

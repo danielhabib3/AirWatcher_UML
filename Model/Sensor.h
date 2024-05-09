@@ -11,6 +11,10 @@
 #define SENSOR_H
 
 //--------------------------------------------------- Interfaces utilisées
+#include <string>
+#include <cstring>
+
+using namespace std;
 
 //------------------------------------------------------------- Constantes
 
@@ -50,7 +54,7 @@ public:
     // Contrat :
     //
 
-    Sensor ( );
+    Sensor ( string unSensorId, double uneLatitude, double uneLongitude );
     // Mode d'emploi :
     //
     // Contrat :
@@ -62,12 +66,39 @@ public:
     // Contrat :
     //
 
+//-------------------------------------------- GETTERS - SETTERS
+    string getSensorId (  ) const;
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    double getLatitude (  ) const;
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    double getLongitude (  ) const;
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
 //------------------------------------------------------------------ PRIVE
 
 protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
+
+private:
+//----------------------------------------------------- Méthodes privées
+
+//----------------------------------------------------- Attributs privés
+    string sensorId;
+    double latitude;
+    double longitude;
 
 };
 

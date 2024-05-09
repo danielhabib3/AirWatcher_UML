@@ -11,6 +11,10 @@
 #define CSVPARSER_H
 
 //--------------------------------------------------- Interfaces utilisées
+#include "../Model/Sensor.h"
+#include <fstream>
+#include <sstream>
+#include <vector>
 
 //------------------------------------------------------------- Constantes
 
@@ -28,7 +32,7 @@ class CsvParser
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
+    vector<Sensor*> createSensors ( );
     // Mode d'emploi :
     //
     // Contrat :
