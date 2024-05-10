@@ -37,36 +37,6 @@ class CsvParser
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    vector<Sensor*> createSensors ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-    vector<Cleaner*> createCleaners ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-    vector<Provider*> createProviders ( vector<Cleaner*> cleaners );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-    vector<Measurement*> createMeasurements ( vector<Sensor*> sensors );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-    vector<PrivateIndividual*> createPrivateIndividuals ( vector<Sensor*> sensors );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
     Data* createData ( );
     // Mode d'emploi :
     //
@@ -107,6 +77,40 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
+
+private:
+//----------------------------------------------------- Méthodes privées
+    vector<Sensor*> createSensors ( );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    vector<Cleaner*> createCleaners ( );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    vector<Provider*> createProviders ( vector<Cleaner*> cleaners );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    vector<Measurement*> createMeasurements ( vector<Sensor*> sensors );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    vector<PrivateIndividual*> createPrivateIndividuals ( vector<Sensor*> sensors );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+//----------------------------------------------------- Attributs privés
 
 };
 
