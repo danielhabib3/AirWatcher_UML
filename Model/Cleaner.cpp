@@ -64,25 +64,6 @@ Cleaner::Cleaner ( string unCleanerId, double uneLatitude, double uneLongitude, 
     stringstream ssStart(start);
     stringstream ssStop(stop);
 
-    // =====================================================================================================================
-    // // Extraire les composantes de la date et de l'heure
-    // char delimiter;
-    // ssStart >> timeStart->tm_year;  // Année
-    // ssStart >> delimiter;         // Lire le premier délimiteur '-'
-    // ssStart >> timeStart->tm_mon;   // Mois
-    // ssStart >> delimiter;         // Lire le deuxième délimiteur '-'
-    // ssStart >> timeStart->tm_mday;  // Jour
-    // ssStart >> timeStart->tm_hour;  // Heure
-    // ssStart >> delimiter;         // Lire le premier délimiteur ':'
-    // ssStart >> timeStart->tm_min;   // Minutes
-    // ssStart >> delimiter;         // Lire le deuxième délimiteur ':'
-    // ssStart >> timeStart->tm_sec;   // Secondes
-
-    // // Correction des valeurs pour correspondre à la représentation de la structure tm
-    // timeStart->tm_year -= 1900; // Les années depuis 1900
-    // timeStart->tm_mon--;         // Les mois sont 0-based dans tm (0 - janvier, 1 - février, ..., 11 - décembre)
-    // =====================================================================================================================
-
     getline(ssStart, yearStart, '-');
     getline(ssStart, monthStart, '-');
     getline(ssStart, dayStart, ' ');
