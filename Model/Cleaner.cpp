@@ -97,6 +97,9 @@ Cleaner::Cleaner ( string unCleanerId, double uneLatitude, double uneLongitude, 
     getline(ssStop, minStop, ':');
     getline(ssStop, secStop, ':');
 
+    timeStart = new tm();
+    timeStop = new tm();
+
     timeStart->tm_sec = stoi(secStart);
     timeStart->tm_min = stoi(minStart);
     timeStart->tm_hour = stoi(hourStart);
@@ -120,6 +123,8 @@ Cleaner::~Cleaner ( )
 #ifdef MAP
     cout << "Appel au destructeur de <Cleaner>" << endl;
 #endif
+    delete timeStart;
+    delete timeStop;
 } //----- Fin de ~Cleaner
 
 //-------------------------------------------- GETTERS - SETTERS
