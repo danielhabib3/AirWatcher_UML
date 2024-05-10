@@ -48,6 +48,37 @@ vector<Sensor*> CsvParser::createSensors (  )
     return sensors;
 } //----- Fin de Méthode
 
+vector<Cleaner*> CsvParser::createCleaners (  )
+// Algorithme :
+//
+{
+    ifstream fic ("./dataset/cleaners.csv");
+    if (!fic.is_open()) {
+        cerr << "Erreur lors de l'ouverture du fichier." << endl;
+    }
+    string ligne;
+    string cleanerIdParsed;
+    string latitudeParsed;
+    string longitudeParsed;
+    string timeStartParsed;
+    string timeStopParsed;
+    vector<Cleaner*> cleaners;
+
+    while(getline(fic, ligne))
+    {
+        stringstream ss(ligne);
+        getline(ss, cleanerIdParsed, ';');
+        getline(ss, latitudeParsed, ';');
+        getline(ss, longitudeParsed, ';');
+        getline(ss, timeStartParsed, ';');
+        getline(ss, timeStopParsed, ';');
+        timeStartParsed += ":"; timeStopParsed += ":";
+        Cleaner* cleaner = new Cleaner(cleanerIdParsed, stod(latitudeParsed), stod(longitudeParsed), timeStartParsed, timeStopParsed);
+        cleaners.push_back(cleaner);
+    }
+    return cleaners;
+} //----- Fin de Méthode
+
 
 //------------------------------------------------- Surcharge d'opérateurs
 CsvParser & CsvParser::operator = ( const CsvParser & unCsvParser )

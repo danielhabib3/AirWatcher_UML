@@ -12,6 +12,10 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include "../Model/Sensor.h"
+#include "../Model/Cleaner.h"
+#include "../Model/Provider.h"
+#include "../Model/Measurement.h"
+#include "../Model/PrivateIndividual.h"
 #include <fstream>
 #include <sstream>
 #include <vector>
@@ -33,6 +37,30 @@ class CsvParser
 public:
 //----------------------------------------------------- Méthodes publiques
     vector<Sensor*> createSensors ( );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    vector<Cleaner*> createCleaners ( );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    vector<Provider*> createProviders ( );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    vector<Measurement*> createMeasurements ( );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    vector<PrivateIndividual*> createPrivateIndividuals ( );
     // Mode d'emploi :
     //
     // Contrat :

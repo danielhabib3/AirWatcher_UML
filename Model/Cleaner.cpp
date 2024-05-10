@@ -49,13 +49,67 @@ Cleaner::Cleaner ( const Cleaner & unCleaner )
 } //----- Fin de Cleaner (constructeur de copie)
 
 
-Cleaner::Cleaner ( )
+Cleaner::Cleaner ( string unCleanerId, double uneLatitude, double uneLongitude, string start, string stop )
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Cleaner>" << endl;
 #endif
+    cleanerId = unCleanerId;
+    latitude = uneLatitude;
+    longitude = uneLongitude;
+
+    string dayStart, dayStop, monthStart, monthStop, yearStart, yearStop, hourStart, hourStop, minStart, minStop, secStart, secStop;
+    stringstream ssStart(start);
+    stringstream ssStop(stop);
+
+    // =====================================================================================================================
+    // // Extraire les composantes de la date et de l'heure
+    // char delimiter;
+    // ssStart >> timeStart->tm_year;  // Année
+    // ssStart >> delimiter;         // Lire le premier délimiteur '-'
+    // ssStart >> timeStart->tm_mon;   // Mois
+    // ssStart >> delimiter;         // Lire le deuxième délimiteur '-'
+    // ssStart >> timeStart->tm_mday;  // Jour
+    // ssStart >> timeStart->tm_hour;  // Heure
+    // ssStart >> delimiter;         // Lire le premier délimiteur ':'
+    // ssStart >> timeStart->tm_min;   // Minutes
+    // ssStart >> delimiter;         // Lire le deuxième délimiteur ':'
+    // ssStart >> timeStart->tm_sec;   // Secondes
+
+    // // Correction des valeurs pour correspondre à la représentation de la structure tm
+    // timeStart->tm_year -= 1900; // Les années depuis 1900
+    // timeStart->tm_mon--;         // Les mois sont 0-based dans tm (0 - janvier, 1 - février, ..., 11 - décembre)
+    // =====================================================================================================================
+
+    getline(ssStart, yearStart, '-');
+    getline(ssStart, monthStart, '-');
+    getline(ssStart, dayStart, ' ');
+    getline(ssStart, hourStart, ':');
+    getline(ssStart, minStart, ':');
+    getline(ssStart, secStart, ':');
+
+    getline(ssStop, yearStop, '-');
+    getline(ssStop, monthStop, '-');
+    getline(ssStop, dayStop, ' ');
+    getline(ssStop, hourStop, ':');
+    getline(ssStop, minStop, ':');
+    getline(ssStop, secStop, ':');
+
+    timeStart->tm_sec = stoi(secStart);
+    timeStart->tm_min = stoi(minStart);
+    timeStart->tm_hour = stoi(hourStart);
+    timeStart->tm_year = stoi(yearStart) - 1900;
+    timeStart->tm_mon = stoi(monthStart) - 1;
+    timeStart->tm_mday = stoi(dayStart);
+
+    timeStop->tm_sec = stoi(secStop);
+    timeStop->tm_min = stoi(minStop);
+    timeStop->tm_hour = stoi(hourStop);
+    timeStop->tm_year = stoi(yearStop) - 1900;
+    timeStop->tm_mon = stoi(monthStop) - 1;
+    timeStop->tm_mday = stoi(dayStop);
 } //----- Fin de Cleaner
 
 
@@ -67,6 +121,42 @@ Cleaner::~Cleaner ( )
     cout << "Appel au destructeur de <Cleaner>" << endl;
 #endif
 } //----- Fin de ~Cleaner
+
+//-------------------------------------------- GETTERS - SETTERS
+string Cleaner::getCleanerId ( ) const
+// Algorithme :
+//
+{
+    return cleanerId;
+} //----- Fin de Méthode
+
+double Cleaner::getLatitude ( ) const
+// Algorithme :
+//
+{
+    return latitude;
+} //----- Fin de Méthode
+
+double Cleaner::getLongitude ( ) const
+// Algorithme :
+//
+{
+    return longitude;
+} //----- Fin de Méthode
+
+tm* Cleaner::getTimeStart ( ) const
+// Algorithme :
+//
+{
+    return timeStart;
+} //----- Fin de Méthode
+
+tm* Cleaner::getTimeStop ( ) const
+// Algorithme :
+//
+{
+    return timeStop;
+} //----- Fin de Méthode
 
 
 //------------------------------------------------------------------ PRIVE
