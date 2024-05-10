@@ -49,19 +49,19 @@ public:
     // Contrat :
     //
 
-    vector<Provider*> createProviders ( );
+    vector<Provider*> createProviders ( vector<Cleaner*> cleaners );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    vector<Measurement*> createMeasurements ( );
+    vector<Measurement*> createMeasurements ( vector<Sensor*> sensors );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    vector<PrivateIndividual*> createPrivateIndividuals ( );
+    vector<PrivateIndividual*> createPrivateIndividuals ( vector<Sensor*> sensors );
     // Mode d'emploi :
     //
     // Contrat :

@@ -49,7 +49,7 @@ Provider::Provider ( const Provider & unProvider )
 } //----- Fin de Provider (constructeur de copie)
 
 
-Provider::Provider ( )
+Provider::Provider ( string unProviderId, Cleaner* unCleaner ) : providerId (unProviderId), cleaner(unCleaner)
 // Algorithme :
 //
 {
@@ -67,6 +67,21 @@ Provider::~Provider ( )
     cout << "Appel au destructeur de <Provider>" << endl;
 #endif
 } //----- Fin de ~Provider
+
+//-------------------------------------------- GETTERS - SETTERS
+Cleaner* Provider::getCleaner (  ) const
+// Algorithme :
+//
+{
+    return cleaner;
+} //----- Fin de Méthode
+
+string Provider::getProviderId (  ) const
+// Algorithme :
+//
+{
+    return providerId;
+} //----- Fin de Méthode
 
 
 //------------------------------------------------------------------ PRIVE

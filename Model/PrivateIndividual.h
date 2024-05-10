@@ -12,6 +12,7 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include "User.h"
+#include "Sensor.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -51,7 +52,7 @@ public:
     // Contrat :
     //
 
-    PrivateIndividual ( );
+    PrivateIndividual ( string unPrivateIndividualId, Sensor* unSensor );
     // Mode d'emploi :
     //
     // Contrat :
@@ -63,12 +64,32 @@ public:
     // Contrat :
     //
 
+//-------------------------------------------- GETTERS - SETTERS
+    Sensor* getSensor (  ) const;
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    string getPrivateIndividualId (  ) const;
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
 //------------------------------------------------------------------ PRIVE
 
 protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
+
+private:
+//----------------------------------------------------- Méthodes privées
+
+//----------------------------------------------------- Attributs privés
+    string privateIndividualId;
+    Sensor* sensor;
 
 };
 

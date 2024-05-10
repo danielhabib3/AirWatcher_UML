@@ -11,6 +11,9 @@
 #define MEASUREMENT_H
 
 //--------------------------------------------------- Interfaces utilisées
+#include "Sensor.h"
+#include <ctime>
+#include <sstream>
 
 //------------------------------------------------------------- Constantes
 
@@ -50,7 +53,7 @@ public:
     // Contrat :
     //
 
-    Measurement ( );
+    Measurement ( Sensor* sensor, string type, double value, string timeString );
     // Mode d'emploi :
     //
     // Contrat :
@@ -62,12 +65,46 @@ public:
     // Contrat :
     //
 
+//-------------------------------------------- GETTERS - SETTERS
+    Sensor* getSensor (  ) const;
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    string getType (  ) const;
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    double getValue (  ) const;
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    tm* getTime (  ) const;
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
 //------------------------------------------------------------------ PRIVE
 
 protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
+
+private:
+//----------------------------------------------------- Méthodes privées
+
+//----------------------------------------------------- Attributs privés
+    Sensor* sensor;
+    string type;
+    double value;
+    tm* time;
 
 };
 

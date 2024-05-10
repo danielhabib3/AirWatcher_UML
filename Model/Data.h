@@ -80,6 +80,24 @@ public:
     //
     // Contrat :
     //
+
+    vector<Measurement*> getAllMeasurements ( ) const;
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    vector<Provider*> getAllProviders ( ) const;
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    vector<PrivateIndividual*> getAllPrivateIndividuals ( ) const;
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
     
     void setAllSensors ( vector<Sensor*> sensors );
     // Mode d'emploi :

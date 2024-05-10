@@ -117,6 +117,27 @@ vector<Cleaner*> Data::getAllCleaners ( ) const
     return allCleaners;
 } //----- Fin de Méthode
 
+vector<Measurement*> Data::getAllMeasurements ( ) const
+// Algorithme :
+//
+{
+    return allMeasurements;
+} //----- Fin de Méthode
+
+vector<Provider*> Data::getAllProviders ( ) const
+// Algorithme :
+//
+{
+    return allProviders;
+} //----- Fin de Méthode
+
+vector<PrivateIndividual*> Data::getAllPrivateIndividuals ( ) const
+// Algorithme :
+//
+{
+    return allPrivateIndividuals;
+} //----- Fin de Méthode
+
 
 //------------------------------------------------------------------ PRIVE
 

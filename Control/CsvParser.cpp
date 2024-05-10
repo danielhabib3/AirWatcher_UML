@@ -79,6 +79,104 @@ vector<Cleaner*> CsvParser::createCleaners (  )
     return cleaners;
 } //----- Fin de Méthode
 
+vector<Measurement*> CsvParser::createMeasurements ( vector<Sensor*> sensors )
+// Algorithme :
+//
+{
+    ifstream fic ("./dataset/measurements.csv");
+    if (!fic.is_open()) {
+        cerr << "Erreur lors de l'ouverture du fichier." << endl;
+    }
+    string ligne;
+    string sensorIdParsed;
+    string typeParsed;
+    string valueParsed;
+    string timeParsed;
+    vector<Measurement*> measurements;
+    Sensor* sensorMeasurement;
+
+    while(getline(fic, ligne))
+    {
+        stringstream ss(ligne);
+        getline(ss, timeParsed, ';');
+        getline(ss, sensorIdParsed, ';');
+        getline(ss, typeParsed, ';');
+        getline(ss, valueParsed, ';');
+        timeParsed += ":";
+        for (vector<Sensor*>::const_iterator it = sensors.begin(); it != sensors.end(); ++it) {
+            if((*it)->getSensorId() == sensorIdParsed) {
+                sensorMeasurement = (*it);
+                break;
+            }
+        }
+        Measurement* measurement = new Measurement(sensorMeasurement, typeParsed, stod(valueParsed), timeParsed);
+        measurements.push_back(measurement);
+    }
+    return measurements;
+} //----- Fin de Méthode
+
+vector<Provider*> CsvParser::createProviders ( vector<Cleaner*> cleaners )
+// Algorithme :
+//
+{
+    ifstream fic ("./dataset/providers.csv");
+    if (!fic.is_open()) {
+        cerr << "Erreur lors de l'ouverture du fichier." << endl;
+    }
+    string ligne;
+    string providerIdParsed;
+    string cleanerIdParsed;
+    vector<Provider*> providers;
+    Cleaner* cleanerProvider;
+
+    while(getline(fic, ligne))
+    {
+        stringstream ss(ligne);
+        getline(ss, providerIdParsed, ';');
+        getline(ss, cleanerIdParsed, ';');
+        for (vector<Cleaner*>::const_iterator it = cleaners.begin(); it != cleaners.end(); ++it) {
+            if((*it)->getCleanerId() == cleanerIdParsed) {
+                cleanerProvider = (*it);
+                break;
+            }
+        }
+        Provider* provider = new Provider(providerIdParsed, cleanerProvider);
+        providers.push_back(provider);
+    }
+    return providers;
+} //----- Fin de Méthode
+
+vector<PrivateIndividual*> CsvParser::createPrivateIndividuals ( vector<Sensor*> sensors )
+// Algorithme :
+//
+{
+    ifstream fic ("./dataset/users.csv");
+    if (!fic.is_open()) {
+        cerr << "Erreur lors de l'ouverture du fichier." << endl;
+    }
+    string ligne;
+    string privateIndividualIdParsed;
+    string sensorIdParsed;
+    vector<PrivateIndividual*> privateIndividuals;
+    Sensor* sensorPrivateIndividual;
+
+    while(getline(fic, ligne))
+    {
+        stringstream ss(ligne);
+        getline(ss, privateIndividualIdParsed, ';');
+        getline(ss, sensorIdParsed, ';');
+        for (vector<Sensor*>::const_iterator it = sensors.begin(); it != sensors.end(); ++it) {
+            if((*it)->getSensorId() == sensorIdParsed) {
+                sensorPrivateIndividual = (*it);
+                break;
+            }
+        }
+        PrivateIndividual* privateIndividual = new PrivateIndividual(privateIndividualIdParsed, sensorPrivateIndividual);
+        privateIndividuals.push_back(privateIndividual);
+    }
+    return privateIndividuals;
+} //----- Fin de Méthode
+
 Data* CsvParser::createData (  )
 // Algorithme :
 //
@@ -88,6 +186,12 @@ Data* CsvParser::createData (  )
     data->setAllSensors(sensors);
     vector<Cleaner*> cleaners = createCleaners();
     data->setAllCleaners(cleaners);
+    vector<Measurement*> measurements = createMeasurements(sensors);
+    data->setAllMeasurements(measurements);
+    vector<Provider*> providers = createProviders(cleaners);
+    data->setAllProviders(providers);
+    vector<PrivateIndividual*> privateIndividuals = createPrivateIndividuals(sensors);
+    data->setAllPrivateIndividuals(privateIndividuals);
     return data;
 } //----- Fin de Méthode
 

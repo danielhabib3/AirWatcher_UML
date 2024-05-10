@@ -49,7 +49,7 @@ PrivateIndividual::PrivateIndividual ( const PrivateIndividual & unPrivateIndivi
 } //----- Fin de PrivateIndividual (constructeur de copie)
 
 
-PrivateIndividual::PrivateIndividual ( )
+PrivateIndividual::PrivateIndividual ( string unPrivateIndividualId, Sensor* unSensor ) : privateIndividualId(unPrivateIndividualId), sensor(unSensor)
 // Algorithme :
 //
 {
@@ -67,6 +67,21 @@ PrivateIndividual::~PrivateIndividual ( )
     cout << "Appel au destructeur de <PrivateIndividual>" << endl;
 #endif
 } //----- Fin de ~PrivateIndividual
+
+//-------------------------------------------- GETTERS - SETTERS
+Sensor* PrivateIndividual::getSensor (  ) const
+// Algorithme :
+//
+{
+    return sensor;
+} //----- Fin de Méthode
+
+string PrivateIndividual::getPrivateIndividualId (  ) const
+// Algorithme :
+//
+{
+    return privateIndividualId;
+} //----- Fin de Méthode
 
 
 //------------------------------------------------------------------ PRIVE
