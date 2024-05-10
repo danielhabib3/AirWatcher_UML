@@ -16,6 +16,7 @@
 #include "../Model/Provider.h"
 #include "../Model/Measurement.h"
 #include "../Model/PrivateIndividual.h"
+#include "../Model/Data.h"
 #include <fstream>
 #include <sstream>
 #include <vector>
@@ -61,6 +62,12 @@ public:
     //
 
     vector<PrivateIndividual*> createPrivateIndividuals ( );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    Data* createData ( );
     // Mode d'emploi :
     //
     // Contrat :

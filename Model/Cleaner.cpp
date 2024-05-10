@@ -63,7 +63,7 @@ Cleaner::Cleaner ( string unCleanerId, double uneLatitude, double uneLongitude, 
     string dayStart, dayStop, monthStart, monthStop, yearStart, yearStop, hourStart, hourStop, minStart, minStop, secStart, secStop;
     stringstream ssStart(start);
     stringstream ssStop(stop);
-
+ 
     getline(ssStart, yearStart, '-');
     getline(ssStart, monthStart, '-');
     getline(ssStart, dayStart, ' ');

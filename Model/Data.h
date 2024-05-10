@@ -68,6 +68,49 @@ public:
     // Contrat :
     //
 
+//-------------------------------------------- GETTERS - SETTERS
+    vector<Sensor*> getAllSensors ( ) const;
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    vector<Cleaner*> getAllCleaners ( ) const;
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+    
+    void setAllSensors ( vector<Sensor*> sensors );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    void setAllCleaners ( vector<Cleaner*> cleaners );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    void setAllMeasurements ( vector<Measurement*> measurements );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    void setAllProviders ( vector<Provider*> providers );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    void setAllPrivateIndividuals ( vector<PrivateIndividual*> privateIndividuals );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
 //------------------------------------------------------------------ PRIVE
 
 protected:

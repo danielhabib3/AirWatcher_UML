@@ -79,6 +79,18 @@ vector<Cleaner*> CsvParser::createCleaners (  )
     return cleaners;
 } //----- Fin de Méthode
 
+Data* CsvParser::createData (  )
+// Algorithme :
+//
+{
+    Data* data = new Data();
+    vector<Sensor*> sensors = createSensors();
+    data->setAllSensors(sensors);
+    vector<Cleaner*> cleaners = createCleaners();
+    data->setAllCleaners(cleaners);
+    return data;
+} //----- Fin de Méthode
+
 
 //------------------------------------------------- Surcharge d'opérateurs
 CsvParser & CsvParser::operator = ( const CsvParser & unCsvParser )

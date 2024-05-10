@@ -68,6 +68,55 @@ Data::~Data ( )
 #endif
 } //----- Fin de ~Data
 
+void Data::setAllSensors ( vector<Sensor*> sensors )
+// Algorithme :
+//
+{
+    allSensors = sensors;
+} //----- Fin de Méthode
+
+void Data::setAllCleaners ( vector<Cleaner*> cleaners )
+// Algorithme :
+//
+{
+    allCleaners = cleaners;
+} //----- Fin de Méthode
+
+void Data::setAllMeasurements ( vector<Measurement*> measurements )
+// Algorithme :
+//
+{
+    allMeasurements = measurements;
+} //----- Fin de Méthode
+
+void Data::setAllProviders ( vector<Provider*> providers )
+// Algorithme :
+//
+{
+    allProviders = providers;
+} //----- Fin de Méthode
+
+void Data::setAllPrivateIndividuals ( vector<PrivateIndividual*> privateIndividuals )
+// Algorithme :
+//
+{
+    allPrivateIndividuals = privateIndividuals;
+} //----- Fin de Méthode
+
+vector<Sensor*> Data::getAllSensors ( ) const
+// Algorithme :
+//
+{
+    return allSensors;
+} //----- Fin de Méthode
+
+vector<Cleaner*> Data::getAllCleaners ( ) const
+// Algorithme :
+//
+{
+    return allCleaners;
+} //----- Fin de Méthode
+
 
 //------------------------------------------------------------------ PRIVE
 
