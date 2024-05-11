@@ -45,11 +45,11 @@ int main(int argc, char ** argv)
     // }
 
     // Tester la creation des privateIndividuals
-    vector<PrivateIndividual*> privateIndividuals = data->getAllPrivateIndividuals();
-    cout << "There are " << privateIndividuals.size() << " providers" << endl << endl;
-    for (vector<PrivateIndividual*>::const_iterator it = privateIndividuals.begin(); it != privateIndividuals.end(); ++it) {
-        cout << (*it)->getPrivateIndividualId() << " possede " << (*it)->getSensor()->getSensorId() << endl;
-    }
+    // vector<PrivateIndividual*> privateIndividuals = data->getAllPrivateIndividuals();
+    // cout << "There are " << privateIndividuals.size() << " providers" << endl << endl;
+    // for (vector<PrivateIndividual*>::const_iterator it = privateIndividuals.begin(); it != privateIndividuals.end(); ++it) {
+    //     cout << (*it)->getPrivateIndividualId() << " possede " << (*it)->getSensor()->getSensorId() << endl;
+    // }
 
     delete csv;
     return 0;
