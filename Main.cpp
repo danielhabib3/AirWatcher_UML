@@ -10,11 +10,10 @@
 
 using namespace std;
 
-
-int main(int argc, char ** argv)
+int main(int argc, char **argv)
 {
-    CsvParser* csv = new CsvParser();
-    Data* data = csv->createData();
+    // CsvParser *csv = new CsvParser();
+    // Data *data = csv->createData();
 
     // Tester la creation des sensors
     // vector<Sensor*> sensors = data->getAllSensors();
@@ -51,6 +50,11 @@ int main(int argc, char ** argv)
     //     cout << (*it)->getPrivateIndividualId() << " possede " << (*it)->getSensor()->getSensorId() << endl;
     // }
 
-    delete csv;
+    // Tester la methode calculateDistance dans la classe Sensor
+    // Sensor *sensor = new Sensor("sensor1", 45.784872, 4.874249);
+    // cout << sensor->calculateDistance(45.784872, 4.87424) << endl; => 0
+    // cout << sensor->calculateDistance(45.767517, 4.873158) << endl; => 1.9
+
+    // delete csv;
     return 0;
 }

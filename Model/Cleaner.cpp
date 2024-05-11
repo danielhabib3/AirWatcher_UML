@@ -1,12 +1,5 @@
-using namespace std;
 #include <iostream>
 #include "Cleaner.h"
-
-Cleaner &Cleaner::operator=(const Cleaner &unCleaner)
-//
-{
-    return *this;
-}
 
 Cleaner::Cleaner(const Cleaner &unCleaner)
 {

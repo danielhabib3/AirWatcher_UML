@@ -2,11 +2,6 @@ using namespace std;
 #include <iostream>
 #include "Measurement.h"
 
-Measurement &Measurement::operator=(const Measurement &unMeasurement)
-{
-    return *this;
-}
-
 Measurement::Measurement(const Measurement &unMeasurement)
 {
 #ifdef MAP
@@ -69,4 +64,13 @@ double Measurement::getValue() const
 tm *Measurement::getTime() const
 {
     return time;
+}
+
+bool Measurement::isInPeriod(tm *start, tm *end)
+{
+    time_t t = mktime(time);
+    time_t tStart = mktime(start);
+    time_t tEnd = mktime(end);
+
+    return t >= tStart && t <= tEnd;
 }
