@@ -1,57 +1,20 @@
-/*************************************************************************
-                           Measurement  -  description
-                             -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
-*************************************************************************/
-
-//---------- Réalisation de la classe <Measurement> (fichier Measurement.cpp) ------------
-
-//---------------------------------------------------------------- INCLUDE
-
-//-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
-
-//------------------------------------------------------ Include personnel
 #include "Measurement.h"
 
-//------------------------------------------------------------- Constantes
-
-//----------------------------------------------------------------- PUBLIC
-
-//----------------------------------------------------- Méthodes publiques
-// type Measurement::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
-
-
-//------------------------------------------------- Surcharge d'opérateurs
-Measurement & Measurement::operator = ( const Measurement & unMeasurement )
-// Algorithme :
-//
+Measurement &Measurement::operator=(const Measurement &unMeasurement)
 {
     return *this;
-} //----- Fin de operator =
+}
 
-
-//-------------------------------------------- Constructeurs - destructeur
-Measurement::Measurement ( const Measurement & unMeasurement )
-// Algorithme :
-//
+Measurement::Measurement(const Measurement &unMeasurement)
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Measurement>" << endl;
 #endif
-} //----- Fin de Measurement (constructeur de copie)
+}
 
-
-Measurement::Measurement ( Sensor* unSensor, string unType, double uneValue, string timeString )
-// Algorithme :
-//
+Measurement::Measurement(Sensor *unSensor, string unType, double uneValue, string timeString)
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Measurement>" << endl;
@@ -63,7 +26,7 @@ Measurement::Measurement ( Sensor* unSensor, string unType, double uneValue, str
 
     string day, month, year, hour, min, sec;
     stringstream ss(timeString);
- 
+
     getline(ss, year, '-');
     getline(ss, month, '-');
     getline(ss, day, ' ');
@@ -79,50 +42,31 @@ Measurement::Measurement ( Sensor* unSensor, string unType, double uneValue, str
     time->tm_year = stoi(year) - 1900;
     time->tm_mon = stoi(month) - 1;
     time->tm_mday = stoi(day);
+}
 
-} //----- Fin de Measurement
-
-
-Measurement::~Measurement ( )
-// Algorithme :
-//
+Measurement::~Measurement()
 {
 #ifdef MAP
     cout << "Appel au destructeur de <Measurement>" << endl;
 #endif
-} //----- Fin de ~Measurement
+}
 
-//-------------------------------------------- GETTERS - SETTERS
-Sensor* Measurement::getSensor (  ) const
-// Algorithme :
-//
+Sensor *Measurement::getSensor() const
 {
     return sensor;
-} //----- Fin de Méthode
+}
 
-string Measurement::getType (  ) const
-// Algorithme :
-//
+string Measurement::getType() const
 {
     return type;
-} //----- Fin de Méthode
+}
 
-double Measurement::getValue (  ) const
-// Algorithme :
-//
+double Measurement::getValue() const
 {
     return value;
-} //----- Fin de Méthode
+}
 
-tm* Measurement::getTime (  ) const
-// Algorithme :
-//
+tm *Measurement::getTime() const
 {
     return time;
-} //----- Fin de Méthode
-
-
-//------------------------------------------------------------------ PRIVE
-
-//----------------------------------------------------- Méthodes protégées
-
+}

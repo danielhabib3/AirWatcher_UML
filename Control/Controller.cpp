@@ -1,75 +1,18 @@
-/*************************************************************************
-                           Controller  -  description
-                             -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
-*************************************************************************/
-
-//---------- Réalisation de la classe <Controller> (fichier Controller.cpp) ------------
-
-//---------------------------------------------------------------- INCLUDE
-
-//-------------------------------------------------------- Include système
-using namespace std;
-#include <iostream>
-
-//------------------------------------------------------ Include personnel
 #include "Controller.h"
+#include <iostream>
+using namespace std;
 
-//------------------------------------------------------------- Constantes
-
-//----------------------------------------------------------------- PUBLIC
-
-//----------------------------------------------------- Méthodes publiques
-// type Controller::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
-
-
-//------------------------------------------------- Surcharge d'opérateurs
-Controller & Controller::operator = ( const Controller & unController )
-// Algorithme :
-//
+Controller::Controller()
 {
-    return *this;
-} //----- Fin de operator =
+	// TODO : implement the default constructor
+}
 
-
-//-------------------------------------------- Constructeurs - destructeur
-Controller::Controller ( const Controller & unController )
-// Algorithme :
-//
+Controller::~Controller()
 {
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <Controller>" << endl;
-#endif
-} //----- Fin de Controller (constructeur de copie)
+	// TODO : implement the destructor
+}
 
-
-Controller::Controller ( )
-// Algorithme :
-//
+Controller::Controller(const Controller &unController)
 {
-#ifdef MAP
-    cout << "Appel au constructeur de <Controller>" << endl;
-#endif
-} //----- Fin de Controller
-
-
-Controller::~Controller ( )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au destructeur de <Controller>" << endl;
-#endif
-} //----- Fin de ~Controller
-
-
-//------------------------------------------------------------------ PRIVE
-
-//----------------------------------------------------- Méthodes protégées
-
+	// TODO : implement the constructor with parameters 
+}

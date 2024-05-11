@@ -1,145 +1,74 @@
-/*************************************************************************
-                           Data  -  description
-                             -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
-*************************************************************************/
-
-//---------- Réalisation de la classe <Data> (fichier Data.cpp) ------------
-
-//---------------------------------------------------------------- INCLUDE
-
-//-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
-
-//------------------------------------------------------ Include personnel
 #include "Data.h"
 
-//------------------------------------------------------------- Constantes
-
-//----------------------------------------------------------------- PUBLIC
-
-//----------------------------------------------------- Méthodes publiques
-// type Data::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
-
-
-//------------------------------------------------- Surcharge d'opérateurs
-Data & Data::operator = ( const Data & unData )
-// Algorithme :
-//
-{
-    return *this;
-} //----- Fin de operator =
-
-
-//-------------------------------------------- Constructeurs - destructeur
-Data::Data ( const Data & unData )
-// Algorithme :
-//
+Data::Data(const Data &unData)
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Data>" << endl;
 #endif
-} //----- Fin de Data (constructeur de copie)
+}
 
-
-Data::Data ( )
-// Algorithme :
-//
+Data::Data()
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Data>" << endl;
 #endif
-} //----- Fin de Data
+}
 
-
-Data::~Data ( )
-// Algorithme :
-//
+Data::~Data()
 {
 #ifdef MAP
     cout << "Appel au destructeur de <Data>" << endl;
 #endif
-} //----- Fin de ~Data
+}
 
-void Data::setAllSensors ( vector<Sensor*> sensors )
-// Algorithme :
-//
+void Data::setAllSensors(vector<Sensor *> sensors)
 {
     allSensors = sensors;
-} //----- Fin de Méthode
+}
 
-void Data::setAllCleaners ( vector<Cleaner*> cleaners )
-// Algorithme :
-//
+void Data::setAllCleaners(vector<Cleaner *> cleaners)
 {
     allCleaners = cleaners;
-} //----- Fin de Méthode
+}
 
-void Data::setAllMeasurements ( vector<Measurement*> measurements )
-// Algorithme :
-//
+void Data::setAllMeasurements(vector<Measurement *> measurements)
 {
     allMeasurements = measurements;
-} //----- Fin de Méthode
+}
 
-void Data::setAllProviders ( vector<Provider*> providers )
-// Algorithme :
-//
+void Data::setAllProviders(vector<Provider *> providers)
 {
     allProviders = providers;
-} //----- Fin de Méthode
+}
 
-void Data::setAllPrivateIndividuals ( vector<PrivateIndividual*> privateIndividuals )
-// Algorithme :
-//
+void Data::setAllPrivateIndividuals(vector<PrivateIndividual *> privateIndividuals)
 {
     allPrivateIndividuals = privateIndividuals;
-} //----- Fin de Méthode
+}
 
-vector<Sensor*> Data::getAllSensors ( ) const
-// Algorithme :
-//
+vector<Sensor *> Data::getAllSensors() const
 {
     return allSensors;
-} //----- Fin de Méthode
+}
 
-vector<Cleaner*> Data::getAllCleaners ( ) const
-// Algorithme :
-//
+vector<Cleaner *> Data::getAllCleaners() const
 {
     return allCleaners;
-} //----- Fin de Méthode
+}
 
-vector<Measurement*> Data::getAllMeasurements ( ) const
-// Algorithme :
-//
+vector<Measurement *> Data::getAllMeasurements() const
 {
     return allMeasurements;
-} //----- Fin de Méthode
+}
 
-vector<Provider*> Data::getAllProviders ( ) const
-// Algorithme :
-//
+vector<Provider *> Data::getAllProviders() const
 {
     return allProviders;
-} //----- Fin de Méthode
+}
 
-vector<PrivateIndividual*> Data::getAllPrivateIndividuals ( ) const
-// Algorithme :
-//
+vector<PrivateIndividual *> Data::getAllPrivateIndividuals() const
 {
     return allPrivateIndividuals;
-} //----- Fin de Méthode
-
-
-//------------------------------------------------------------------ PRIVE
-
-//----------------------------------------------------- Méthodes protégées
-
+}

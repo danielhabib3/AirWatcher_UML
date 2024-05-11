@@ -1,57 +1,21 @@
-/*************************************************************************
-                           Cleaner  -  description
-                             -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
-*************************************************************************/
-
-//---------- Réalisation de la classe <Cleaner> (fichier Cleaner.cpp) ------------
-
-//---------------------------------------------------------------- INCLUDE
-
-//-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
-
-//------------------------------------------------------ Include personnel
 #include "Cleaner.h"
 
-//------------------------------------------------------------- Constantes
-
-//----------------------------------------------------------------- PUBLIC
-
-//----------------------------------------------------- Méthodes publiques
-// type Cleaner::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
-
-
-//------------------------------------------------- Surcharge d'opérateurs
-Cleaner & Cleaner::operator = ( const Cleaner & unCleaner )
-// Algorithme :
+Cleaner &Cleaner::operator=(const Cleaner &unCleaner)
 //
 {
     return *this;
-} //----- Fin de operator =
+}
 
-
-//-------------------------------------------- Constructeurs - destructeur
-Cleaner::Cleaner ( const Cleaner & unCleaner )
-// Algorithme :
-//
+Cleaner::Cleaner(const Cleaner &unCleaner)
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Cleaner>" << endl;
 #endif
-} //----- Fin de Cleaner (constructeur de copie)
+}
 
-
-Cleaner::Cleaner ( string unCleanerId, double uneLatitude, double uneLongitude, string start, string stop )
-// Algorithme :
-//
+Cleaner::Cleaner(string unCleanerId, double uneLatitude, double uneLongitude, string start, string stop)
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Cleaner>" << endl;
@@ -63,7 +27,7 @@ Cleaner::Cleaner ( string unCleanerId, double uneLatitude, double uneLongitude, 
     string dayStart, dayStop, monthStart, monthStop, yearStart, yearStop, hourStart, hourStop, minStart, minStop, secStart, secStop;
     stringstream ssStart(start);
     stringstream ssStop(stop);
- 
+
     getline(ssStart, yearStart, '-');
     getline(ssStart, monthStart, '-');
     getline(ssStart, dayStart, ' ');
@@ -94,58 +58,38 @@ Cleaner::Cleaner ( string unCleanerId, double uneLatitude, double uneLongitude, 
     timeStop->tm_year = stoi(yearStop) - 1900;
     timeStop->tm_mon = stoi(monthStop) - 1;
     timeStop->tm_mday = stoi(dayStop);
-} //----- Fin de Cleaner
+}
 
-
-Cleaner::~Cleaner ( )
-// Algorithme :
-//
+Cleaner::~Cleaner()
 {
 #ifdef MAP
     cout << "Appel au destructeur de <Cleaner>" << endl;
 #endif
     delete timeStart;
     delete timeStop;
-} //----- Fin de ~Cleaner
+}
 
-//-------------------------------------------- GETTERS - SETTERS
-string Cleaner::getCleanerId ( ) const
-// Algorithme :
-//
+string Cleaner::getCleanerId() const
 {
     return cleanerId;
-} //----- Fin de Méthode
+}
 
-double Cleaner::getLatitude ( ) const
-// Algorithme :
-//
+double Cleaner::getLatitude() const
 {
     return latitude;
-} //----- Fin de Méthode
+}
 
-double Cleaner::getLongitude ( ) const
-// Algorithme :
-//
+double Cleaner::getLongitude() const
 {
     return longitude;
-} //----- Fin de Méthode
+}
 
-tm* Cleaner::getTimeStart ( ) const
-// Algorithme :
-//
+tm *Cleaner::getTimeStart() const
 {
     return timeStart;
-} //----- Fin de Méthode
+}
 
-tm* Cleaner::getTimeStop ( ) const
-// Algorithme :
-//
+tm *Cleaner::getTimeStop() const
 {
     return timeStop;
-} //----- Fin de Méthode
-
-
-//------------------------------------------------------------------ PRIVE
-
-//----------------------------------------------------- Méthodes protégées
-
+}

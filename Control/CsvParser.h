@@ -1,16 +1,6 @@
-/*************************************************************************
-                           CsvParser  -  description
-                             -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
-*************************************************************************/
-
-//---------- Interface de la classe <CsvParser> (fichier CsvParser.h) ----------------
-#if ! defined ( CSVPARSER_H )
+#if !defined(CSVPARSER_H)
 #define CSVPARSER_H
 
-//--------------------------------------------------- Interfaces utilisées
 #include "../Model/Sensor.h"
 #include "../Model/Cleaner.h"
 #include "../Model/Provider.h"
@@ -21,100 +11,21 @@
 #include <sstream>
 #include <vector>
 
-//------------------------------------------------------------- Constantes
-
-//------------------------------------------------------------------ Types
-
-//------------------------------------------------------------------------
-// Rôle de la classe <CsvParser>
-//
-//
-//------------------------------------------------------------------------
-
 class CsvParser
 {
-//----------------------------------------------------------------- PUBLIC
 
 public:
-//----------------------------------------------------- Méthodes publiques
-    Data* createData ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-
-//------------------------------------------------- Surcharge d'opérateurs
-    CsvParser & operator = ( const CsvParser & unCsvParser );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-
-//-------------------------------------------- Constructeurs - destructeur
-    CsvParser ( const CsvParser & unCsvParser );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
-
-    CsvParser ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-    virtual ~CsvParser ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-//------------------------------------------------------------------ PRIVE
+    Data *createData();
+    CsvParser();
+    virtual ~CsvParser();
 
 protected:
-//----------------------------------------------------- Méthodes protégées
-
-//----------------------------------------------------- Attributs protégés
-
 private:
-//----------------------------------------------------- Méthodes privées
-    vector<Sensor*> createSensors ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-    vector<Cleaner*> createCleaners ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-    vector<Provider*> createProviders ( vector<Cleaner*> cleaners );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-    vector<Measurement*> createMeasurements ( vector<Sensor*> sensors );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-    vector<PrivateIndividual*> createPrivateIndividuals ( vector<Sensor*> sensors );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-//----------------------------------------------------- Attributs privés
-
+    vector<Sensor *> createSensors();
+    vector<Cleaner *> createCleaners();
+    vector<Provider *> createProviders(vector<Cleaner *> cleaners);
+    vector<Measurement *> createMeasurements(vector<Sensor *> sensors);
+    vector<PrivateIndividual *> createPrivateIndividuals(vector<Sensor *> sensors);
 };
 
-//-------------------------------- Autres définitions dépendantes de <CsvParser>
-
 #endif // CSVPARSER_H
-

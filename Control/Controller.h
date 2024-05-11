@@ -1,77 +1,17 @@
-/*************************************************************************
-                           Controller  -  description
-                             -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
-*************************************************************************/
-
-//---------- Interface de la classe <Controller> (fichier Controller.h) ----------------
-#if ! defined ( CONTROLLER_H )
+#if !defined(CONTROLLER_H)
 #define CONTROLLER_H
-
-//--------------------------------------------------- Interfaces utilisées
-
-//------------------------------------------------------------- Constantes
-
-//------------------------------------------------------------------ Types
-
-//------------------------------------------------------------------------
-// Rôle de la classe <Controller>
-//
-//
-//------------------------------------------------------------------------
 
 class Controller
 {
-//----------------------------------------------------------------- PUBLIC
 
 public:
-//----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    Controller &operator=(const Controller &unController);
+    Controller(const Controller &unController);
 
-
-//------------------------------------------------- Surcharge d'opérateurs
-    Controller & operator = ( const Controller & unController );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-
-//-------------------------------------------- Constructeurs - destructeur
-    Controller ( const Controller & unController );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
-
-    Controller ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-    virtual ~Controller ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-//------------------------------------------------------------------ PRIVE
+    Controller();
+    virtual ~Controller();
 
 protected:
-//----------------------------------------------------- Méthodes protégées
-
-//----------------------------------------------------- Attributs protégés
-
 };
 
-//-------------------------------- Autres définitions dépendantes de <Controller>
-
 #endif // CONTROLLER_H
-
