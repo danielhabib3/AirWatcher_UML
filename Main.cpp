@@ -7,6 +7,7 @@
 
 //-------------------------------------------------------- Includes personels
 #include "./Control/CsvParser.h"
+#include "./Model/Statistics.h"
 
 using namespace std;
 

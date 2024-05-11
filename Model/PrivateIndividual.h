@@ -5,15 +5,17 @@
 #include "Sensor.h"
 using namespace std;
 
+class Sensor; 
+
 class PrivateIndividual : public User
 {
 
 public:
     PrivateIndividual(const PrivateIndividual &unPrivateIndividual);
-    PrivateIndividual(string unPrivateIndividualId, Sensor *unSensor, bool isTrustable = true, int nbPoints = 0);
+    PrivateIndividual(string unPrivateIndividualId, Sensor* unSensor, bool isTrustable = true, int nbPoints = 0);
     virtual ~PrivateIndividual();
 
-    Sensor *getSensor() const;
+    Sensor* getSensor() const;
     string getPrivateIndividualId() const;
 
     bool getTrustable() const;

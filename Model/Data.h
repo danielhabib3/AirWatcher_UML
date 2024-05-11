@@ -7,6 +7,9 @@
 #include "PrivateIndividual.h"
 #include <vector>
 
+class Measurement;
+class PrivateIndividual;
+
 class Data
 {
 
@@ -27,11 +30,11 @@ public:
     void setAllPrivateIndividuals(vector<PrivateIndividual *> privateIndividuals);
 
 private:
-    vector<Sensor *> allSensors;
-    vector<Cleaner *> allCleaners;
-    vector<Measurement *> allMeasurements;
-    vector<Provider *> allProviders;
-    vector<PrivateIndividual *> allPrivateIndividuals;
+    vector<Sensor*> allSensors;
+    vector<Cleaner*> allCleaners;
+    vector<Measurement*> allMeasurements;
+    vector<Provider*> allProviders;
+    vector<PrivateIndividual*> allPrivateIndividuals;
 };
 
 #endif // DATA_H

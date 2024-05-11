@@ -5,18 +5,20 @@
 #include <sstream>
 #include "Sensor.h"
 
+class Sensor;
+
 class Measurement
 {
 
 public:
     Measurement(const Measurement &unMeasurement);
 
-    Measurement(Sensor *sensor, string type, double value, string timeString);
+    Measurement(Sensor* sensor, string type, double value, string timeString);
     virtual ~Measurement();
-    Sensor *getSensor() const;
+    Sensor* getSensor() const;
     string getType() const;
     double getValue() const;
-    tm *getTime() const;
+    tm* getTime() const;
 
     /**
      * @brief check if the measurement is in the period defined by the start and end parameters
@@ -25,12 +27,12 @@ public:
      * @param end the end of the period
      * @return bool true if the measurement is in the period, false otherwise
      */
-    bool isInPeriod(tm *start, tm *end);
+    bool isInPeriod(tm* start, tm* end);
 
 private:
-    Sensor *sensor;
+    Sensor* sensor;
     string type;
     double value;
-    tm *time;
+    tm* time;
 };
 #endif // MEASUREMENT_H

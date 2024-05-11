@@ -8,6 +8,9 @@
 
 using namespace std;
 
+class PrivateIndividual;
+class Data;
+
 class Sensor
 {
 
@@ -36,7 +39,7 @@ public:
      * @param data the data to check if a private individual is linked to the sensor
      * @return PrivateIndividual* the private individual linked to the sensor or null if no private individual is linked to the sensor
      */
-    PrivateIndividual *getPrivateIndividualLinkToTheSensor(Data *data) const;
+    PrivateIndividual* getPrivateIndividualLinkToTheSensor(Data *data) const;
 
 private:
     string sensorId;
