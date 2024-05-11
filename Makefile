@@ -1,4 +1,4 @@
-CCFLAGS = -ansi -pedantic -Wall -std=c++11 #-DMAP
+CCFLAGS = -ansi -pedantic -Wall -std=c++11 -lm #-DMAP
 
 exe : Main.o User.o Agency.o Cleaner.o Data.o Measurement.o PrivateIndividual.o Provider.o Sensor.o Statistics.o View.o Controller.o CsvParser.o
 	g++ -o exe Main.o Agency.o Cleaner.o Data.o Measurement.o PrivateIndividual.o Provider.o Sensor.o Statistics.o User.o View.o Controller.o CsvParser.o 
