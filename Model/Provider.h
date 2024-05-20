@@ -12,11 +12,8 @@ public:
     Provider ( const Provider & unProvider );
     Provider ( string unProviderId, Cleaner* unCleaner );
     virtual ~Provider ( );
-    
     Cleaner* getCleaner (  ) const;
     string getProviderId (  ) const;
-    
-
 
 private:
     string providerId;

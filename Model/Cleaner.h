@@ -9,19 +9,12 @@ class Cleaner
 
 public:
     Cleaner(const Cleaner &unCleaner);
-
     Cleaner(string unCleanerId, double uneLatitude, double uneLongitude, string start, string stop);
-
     virtual ~Cleaner();
-
     string getCleanerId() const;
-
     double getLatitude() const;
-
     double getLongitude() const;
-
     tm *getTimeStart() const;
-
     tm *getTimeStop() const;
 
 protected:

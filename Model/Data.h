@@ -14,7 +14,6 @@ class Data
 {
 
 public:
-    Data &operator=(const Data &unData);
     Data(const Data &unData);
     Data();
     virtual ~Data();

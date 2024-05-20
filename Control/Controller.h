@@ -5,9 +5,7 @@ class Controller
 {
 
 public:
-    Controller &operator=(const Controller &unController);
     Controller(const Controller &unController);
-
     Controller();
     virtual ~Controller();
 

@@ -6,11 +6,8 @@
 class Agency : public User
 {
 public:
-    Agency &operator=(const Agency &unAgency);
     Agency(const Agency &unAgency);
-
     Agency();
-
     virtual ~Agency();
 
 protected:

@@ -18,7 +18,6 @@ public:
     Sensor(const Sensor &unSensor);
     Sensor(string unSensorId, double uneLatitude, double uneLongitude);
     virtual ~Sensor();
-
     string getSensorId() const;
     double getLatitude() const;
     double getLongitude() const;

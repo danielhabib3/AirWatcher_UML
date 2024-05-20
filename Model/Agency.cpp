@@ -2,11 +2,6 @@ using namespace std;
 #include <iostream>
 #include "Agency.h"
 
-Agency &Agency::operator=(const Agency &unAgency)
-{
-    return *this;
-}
-
 Agency::Agency(const Agency &unAgency)
 {
 #ifdef MAP

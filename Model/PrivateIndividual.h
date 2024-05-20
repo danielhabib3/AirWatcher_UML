@@ -14,10 +14,8 @@ public:
     PrivateIndividual(const PrivateIndividual &unPrivateIndividual);
     PrivateIndividual(string unPrivateIndividualId, Sensor* unSensor, bool isTrustable = true, int nbPoints = 0);
     virtual ~PrivateIndividual();
-
     Sensor* getSensor() const;
     string getPrivateIndividualId() const;
-
     bool getTrustable() const;
     void setTrustable(bool trustable);
     int getPoints() const;
