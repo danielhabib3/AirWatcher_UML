@@ -2,6 +2,8 @@
 #define SENSOR_H
 
 #include <string>
+#include <map>
+#include <vector>
 #include <cstring>
 #include <cmath>
 #include "Data.h"
@@ -15,6 +17,7 @@ class Sensor
 {
 
 public:
+    bool operator == ( const Sensor & unSensor );
     Sensor(const Sensor &unSensor);
     Sensor(string unSensorId, double uneLatitude, double uneLongitude);
     virtual ~Sensor();
@@ -39,6 +42,17 @@ public:
      * @return PrivateIndividual* the private individual linked to the sensor or null if no private individual is linked to the sensor
      */
     PrivateIndividual* getPrivateIndividualLinkToTheSensor(Data *data) const;
+
+    /**
+     * @brief Return a list of sensors order by the similarity to the sensor that called the function,
+     * the similarity is calculated by the index atmo
+     *
+     * @param data the data 
+     * @param timeStart the start time of the period to check the similarity
+     * @param timeEnd the end time of the period to check the similarity
+     * @return PrivateIndividual* the private individual linked to the sensor or null if no private individual is linked to the sensor
+     */
+    vector<Sensor*> getSimilarSensors(Data *data, string measurementType, tm* timeStart, tm* timeEnd) const;
 
 private:
     string sensorId;

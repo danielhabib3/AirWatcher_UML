@@ -21,6 +21,26 @@ Data::~Data()
 #ifdef MAP
     cout << "Appel au destructeur de <Data>" << endl;
 #endif
+    for (Sensor* sensor : allSensors)
+    {
+        delete sensor;
+    }
+    for (Cleaner* cleaner : allCleaners)
+    {
+        delete cleaner;
+    }
+    for (Measurement* measurement : allMeasurements)
+    {
+        delete measurement;
+    }
+    for (Provider* provider : allProviders)
+    {
+        delete provider;
+    }
+    for (PrivateIndividual* privateIndividual : allPrivateIndividuals)
+    {
+        delete privateIndividual;
+    }
 }
 
 void Data::setAllSensors(vector<Sensor *> sensors)

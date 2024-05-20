@@ -15,7 +15,7 @@ class CsvParser
 {
 
 public:
-    Data *createData();
+    Data *createData(Data *data);
     CsvParser();
     virtual ~CsvParser();
 

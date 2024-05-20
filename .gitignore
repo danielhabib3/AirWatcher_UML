@@ -2,3 +2,5 @@
 exe
 .vscode/
 ./bin/*.o
+SClasse.h
+SClasse.cpp

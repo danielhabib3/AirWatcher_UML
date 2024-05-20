@@ -159,10 +159,9 @@ vector<PrivateIndividual *> CsvParser::createPrivateIndividuals(vector<Sensor *>
     return privateIndividuals;
 }
 
-Data *CsvParser::createData()
+Data *CsvParser::createData(Data* data)
 {
     // Call every create method and set the data object
-    Data *data = new Data();
     vector<Sensor *> sensors = createSensors();
     data->setAllSensors(sensors);
     vector<Cleaner *> cleaners = createCleaners();
