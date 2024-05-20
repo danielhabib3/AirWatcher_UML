@@ -43,6 +43,5 @@ exe : ./bin/Main.o ./bin/User.o ./bin/Agency.o ./bin/Cleaner.o ./bin/Sensor.o ./
 	g++ -o ./bin/Main.o -c Main.cpp $(CCFLAGS)
 
 clean: 
-	rm *.o
 	rm ./bin/*.o
 	rm exe	
