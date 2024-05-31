@@ -23,3 +23,5 @@ View::~View ( )
     cout << "Appel au destructeur de <View>" << endl;
 #endif
 } 
+
+
