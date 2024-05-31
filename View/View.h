@@ -6,13 +6,14 @@ class View
 {
 
 public:
-    View & operator = ( const View & unView );
     View ( const View & unView );
     View ( );
     virtual ~View ( );
+    void StartApplication();
     
     
-protected:
+private:
+    void DisplayExitMessage();
 
 };
 
