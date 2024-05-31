@@ -1,4 +1,4 @@
-#if ! defined ( VIEW_H )
+#if !defined(VIEW_H)
 #define VIEW_H
 
 #include <vector>
@@ -8,14 +8,10 @@ class View
 {
 
 public:
-    View ( const View & unView );
-    View ( );
-    virtual ~View ( );
-    void StartApplication();
-    
-    
-private:
-    void DisplayExitMessage();
+    View &operator=(const View &unView);
+    View(const View &unView);
+    View();
+    virtual ~View();
 
     /**
      * @brief cette methode permet de recuperer les parametres necessaires 
@@ -47,4 +43,3 @@ private:
 };
 
 #endif // VIEW_H
-

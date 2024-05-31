@@ -139,6 +139,7 @@ vector<PrivateIndividual *> CsvParser::createPrivateIndividuals(vector<Sensor *>
     string sensorIdParsed;
     vector<PrivateIndividual *> privateIndividuals;
     Sensor *sensorPrivateIndividual;
+    vector<Sensor *> sensorsPrivateIndividual;
 
     while (getline(fic, ligne))
     {
@@ -150,16 +151,16 @@ vector<PrivateIndividual *> CsvParser::createPrivateIndividuals(vector<Sensor *>
             if ((*it)->getSensorId() == sensorIdParsed)
             {
                 sensorPrivateIndividual = (*it);
-                break;
+                sensorsPrivateIndividual.push_back(sensorPrivateIndividual);
             }
         }
-        PrivateIndividual *privateIndividual = new PrivateIndividual(privateIndividualIdParsed, sensorPrivateIndividual);
+        PrivateIndividual *privateIndividual = new PrivateIndividual(privateIndividualIdParsed, sensorsPrivateIndividual);
         privateIndividuals.push_back(privateIndividual);
     }
     return privateIndividuals;
 }
 
-Data *CsvParser::createData(Data* data)
+Data *CsvParser::createData(Data *data)
 {
     // Call every create method and set the data object
     vector<Sensor *> sensors = createSensors();

@@ -14,7 +14,7 @@ public:
 
     /**
      * @brief calculates the mean air quality index during a period of time for a specific zone
-     * If 
+     * If
      *
      * @param data the data to use
      * @param start the start of the period (it's a date)
@@ -82,6 +82,8 @@ private:
      * @return int the index of the O3 pollutant
      */
     int calculateIndexO3(double concentration);
+
+    friend class StatisticsTest;
 };
 
 #endif // STATISTICS_H
