@@ -106,10 +106,21 @@ private:
         // The attempt order of the similar sensors of the second one is :
         // sensor2, sensor1, sensor3
 
-        vector <Sensor *> attemptSimilarSensors; // The expected order of the similar sensors of the second one
-        attemptSimilarSensors.push_back(sensor2);
-        attemptSimilarSensors.push_back(sensor1);
-        attemptSimilarSensors.push_back(sensor3);
+        vector <Sensor *> attemptSimilarSensors1; // The expected order of the similar sensors of the first one
+        attemptSimilarSensors1.push_back(sensor1);
+        attemptSimilarSensors1.push_back(sensor2);
+        attemptSimilarSensors1.push_back(sensor3);
+
+
+        vector <Sensor *> attemptSimilarSensors2; // The expected order of the similar sensors of the second one
+        attemptSimilarSensors2.push_back(sensor2);
+        attemptSimilarSensors2.push_back(sensor1);
+        attemptSimilarSensors2.push_back(sensor3);
+
+        vector <Sensor *> attemptSimilarSensors3; // The expected order of the similar sensors of the third one
+        attemptSimilarSensors3.push_back(sensor3);
+        attemptSimilarSensors3.push_back(sensor2);
+        attemptSimilarSensors3.push_back(sensor1);
 
         tm *timeStart = new tm();
 
@@ -119,12 +130,30 @@ private:
         timeStart->tm_year = 2019 - 1900;
         timeStart->tm_mon = 1 - 1;
         timeStart->tm_mday = 1;
-        vector <Sensor *> similarSensors = sensor3->getSimilarSensors(&data, "PM10", timeStart, timeStart);
+
+        vector <Sensor *> similarSensors1 = sensor1->getSimilarSensors(&data, "PM10", timeStart, timeStart);
+        vector <Sensor *> similarSensors2 = sensor2->getSimilarSensors(&data, "PM10", timeStart, timeStart);
+        vector <Sensor *> similarSensors3 = sensor3->getSimilarSensors(&data, "PM10", timeStart, timeStart);
         
-        assert (similarSensors.size() == 3);
-        for (int i = 0; i < similarSensors.size(); i++){
+
+        // Verification of the order of the similar sensors for each sensor
+        assert (similarSensors1.size() == 3 && similarSensors2.size() == 3 && similarSensors3.size() == 3);
+        for (int i = 0; i < similarSensors1.size(); i++){
             //cout<<"sensor attempt "<<i<< " :" << attemptSimilarSensors[i]->getSensorId()<<endl;
-            cout <<"similar sensor "<<i<< " :" << similarSensors[i]->getSensorId()<<endl;
+            // cout <<"similar sensor "<<i<< " :" << similarSensors[i]->getSensorId()<<endl;
+            assert(*similarSensors1[i] == *attemptSimilarSensors1[i]);
+        }
+
+        for (int i = 0; i < similarSensors2.size(); i++){
+            //cout<<"sensor attempt "<<i<< " :" << attemptSimilarSensors[i]->getSensorId()<<endl;
+            // cout <<"similar sensor "<<i<< " :" << similarSensors[i]->getSensorId()<<endl;
+            assert(*similarSensors2[i] == *attemptSimilarSensors2[i]);
+        }
+
+        for (int i = 0; i < similarSensors3.size(); i++){
+            //cout<<"sensor attempt "<<i<< " :" << attemptSimilarSensors[i]->getSensorId()<<endl;
+            // cout <<"similar sensor "<<i<< " :" << similarSensors[i]->getSensorId()<<endl;
+            assert(*similarSensors3[i] == *attemptSimilarSensors3[i]);
         }
 
         cout << "Test case for getSimilarSensors passed" << endl;

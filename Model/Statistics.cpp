@@ -49,6 +49,7 @@ int Statistics::calculateAirQuality(double cSo2, double cNo2, double cPm10, doub
     int indexPm10 = calculateIndexPm10(cPm10);
     int indexO3 = calculateIndexO3(cO3);
 
+
     // Return the maximum of the 4 indexes
     return max(indexSo2, indexNo2, indexPm10, indexO3);
 }
@@ -243,10 +244,10 @@ int Statistics::calculateIndexO3(double concentration)
 
 int Statistics::getMeanAirQualityByZoneByPeriod(Data *data, tm *start, tm *end, double lat, double lon, double radius)
 {
-    double meanConcentrationSo2, countSo2 = 0;
-    double meanConcentrationNo2, countNo2 = 0;
-    double meanConcentrationPm10, countPm10 = 0;
-    double meanConcentrationO3, countO3 = 0;
+    double meanConcentrationSo2=0, countSo2 = 0;
+    double meanConcentrationNo2=0, countNo2 = 0;
+    double meanConcentrationPm10=0, countPm10 = 0;
+    double meanConcentrationO3=0, countO3 = 0;
 
     // get all measurement from the database
     vector<Measurement *> measurements = data->getAllMeasurements();
@@ -261,6 +262,8 @@ int Statistics::getMeanAirQualityByZoneByPeriod(Data *data, tm *start, tm *end, 
             {
                 if (measurement->getType() == "SO2")
                 {
+                    cout << "SO2 : " << measurement->getValue() << endl;
+                    cout <<"SO2 mean : " << meanConcentrationSo2 << endl;
                     meanConcentrationSo2 += measurement->getValue();
                     countSo2++;
                 }
@@ -308,6 +311,16 @@ int Statistics::getMeanAirQualityByZoneByPeriod(Data *data, tm *start, tm *end, 
     {
         meanConcentrationO3 /= countO3;
     }
+
+    // In the case where we have no data (no sensor in the zone or no data in the period)
+    if(countSo2 == 0 && countNo2 == 0 && countPm10 == 0 && countO3 == 0){
+        return -1;
+    }
+
+    cout << "meanConcentrationSo2 : " << meanConcentrationSo2 << endl;
+    cout << "meanConcentrationNo2 : " << meanConcentrationNo2 << endl;
+    cout << "meanConcentrationPm10 : " << meanConcentrationPm10 << endl;
+    cout << "meanConcentrationO3 : " << meanConcentrationO3 << endl;
 
     return this->calculateAirQuality(meanConcentrationSo2, meanConcentrationNo2, meanConcentrationPm10, meanConcentrationO3);
 }

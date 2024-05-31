@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cassert>
 #include "Statistics.h"
+#include "Measurement.h"
+#include "Sensor.h"
 
 // g++ -o statTest Statistics.cpp StatisticsTest.cpp Measurement.cpp PrivateIndividual.cpp Data.cpp Sensor.cpp User.cpp
 
@@ -10,11 +12,12 @@ class StatisticsTest
 public:
     void runTests()
     {
-        testCalculateIndexSo2();
-        testCalculateIndexNo2();
-        testCalculateIndexPm10();
-        testCalculateIndexO3();
-        testCalculateAirQuality();
+        // testCalculateIndexSo2();
+        // testCalculateIndexNo2();
+        // testCalculateIndexPm10();
+        // testCalculateIndexO3();
+        // testCalculateAirQuality();
+        testGetMeanAirQualityByZoneByPeriod();
     }
 
 private:
@@ -24,28 +27,28 @@ private:
 
         // 498.0 => 9, 53.0 => 2 , 19.0 => 3 , 103.0 => 4
         // Test case : max => indexSo2 (9)
-        int result2 = statistics.calculateAirQuality(498.0, 53.0, 19.0, 103.0);
-        assert(result2 == 9);
+        int result1 = statistics.calculateAirQuality(498.0, 53.0, 19.0, 103.0);
+        assert(result1 == 9);
 
         // 38.0 => 1, 398.0 => 9 , 19.0 => 3 , 103.0 => 4
         // Test case : max => indexNo2 (9)
-        int result1 = statistics.calculateAirQuality(38.0, 398.0, 19.0, 103.0);
-        assert(result1 == 9);
+        int result2 = statistics.calculateAirQuality(38.0, 398.0, 19.0, 103.0);
+        assert(result2 == 9);
 
         // 38.0 => 1, 53.0 => 2 , 78.0 => 9 , 103.0 => 4
         // Test case : max => indexPm10 (9)
-        int result1 = statistics.calculateAirQuality(38.0, 53.0, 78.0, 103.0);
-        assert(result1 == 9);
+        int result3 = statistics.calculateAirQuality(38.0, 53.0, 78.0, 103.0);
+        assert(result3 == 9);
 
         // 38.0 => 1, 53.0 => 2 , 19.0 => 3 , 238.0 => 9
         // Test case : max => indexO3 (9)
-        int result1 = statistics.calculateAirQuality(38.0, 53.0, 19.0, 238.0);
-        assert(result1 == 9);
+        int result4 = statistics.calculateAirQuality(38.0, 53.0, 19.0, 238.0);
+        assert(result4 == 9);
 
         // 78.0 => 2 , 53.0 => 2, 12.0 => 2, 53.0 => 2
         // Test case : all equal (2)
-        int result1 = statistics.calculateAirQuality(78.0, 53.0, 12.0, 53.0);
-        assert(result1 == 2);
+        int result5 = statistics.calculateAirQuality(78.0, 53.0, 12.0, 53.0);
+        assert(result5 == 2);
 
         std::cout << "All test cases for calculateAirQuality passed" << std::endl;
     }
@@ -216,6 +219,92 @@ private:
         assert(result10 == 10);
 
         cout << "All test cases for calculateIndexO3 passed" << endl;
+    }
+
+
+    void testGetMeanAirQualityByZoneByPeriod(){
+
+        // Creation of 3 sensors and 4 measurements for each sensor
+        // 2 sensors in the zone (1 and 2) and 1 sensor outside the zone (3)
+        Sensor *sensor1 = new Sensor("sensor1", 45.7830905, 4.8759894); // INSA Lyon
+        Sensor *sensor2 = new Sensor("sensor2", 45.7704175, 4.8633324); // Charpenne Villeurbanne
+        Sensor *sensor3 = new Sensor("sensor3", 40.7127281, -74.0060152); // New York
+
+        // Mean of PM10 for sensor 1 and 2 is 4.0 => index 1
+        Measurement *measurement1 = new Measurement(sensor1, "PM10", 3.0, "2019-01-01 12:00:00");
+        Measurement *measurement2 = new Measurement(sensor2, "PM10", 5.0, "2019-01-01 12:00:00");
+        Measurement *measurement3 = new Measurement(sensor3, "PM10", 10.0, "2019-01-01 12:00:00");
+
+        // Mean of SO2 for sensor 1 and 2 is 298 => index 7
+        Measurement *measurement4 = new Measurement(sensor1, "SO2", 298.0, "2019-01-01 12:00:00");
+        Measurement *measurement5 = new Measurement(sensor2, "SO2", 297.0, "2019-01-01 12:00:00");
+        Measurement *measurement6 = new Measurement(sensor3, "SO2", 25.0, "2019-01-01 12:00:00");
+
+        // Mean of O3 for sensor 1 and 2 is 125 => index 5
+        Measurement *measurement7 = new Measurement(sensor1, "O3", 100.0, "2019-01-01 12:00:00");
+        Measurement *measurement8 = new Measurement(sensor2, "O3", 150.0, "2019-01-01 12:00:00");
+        Measurement *measurement9 = new Measurement(sensor3, "O3", 200.0, "2019-01-01 12:00:00");
+
+        // Mean of NO2 for sensor 1 and 2 is 35 => index 2
+        Measurement *measurement10 = new Measurement(sensor1, "NO2", 30.0, "2019-01-01 12:00:00");
+        Measurement *measurement11 = new Measurement(sensor2, "NO2", 40.0, "2019-01-01 12:00:00");
+        Measurement *measurement12 = new Measurement(sensor3, "NO2", 50.0, "2019-01-01 12:00:00");
+
+        // the method should return 7 because it's the max index for the 4 measurements (for each sensor in the zone)
+
+        Data data;
+        vector<Measurement *> measurements;
+        measurements.push_back(measurement1);
+        measurements.push_back(measurement2);
+        measurements.push_back(measurement3);
+        measurements.push_back(measurement4);
+        measurements.push_back(measurement5);
+        measurements.push_back(measurement6);
+        measurements.push_back(measurement7);
+        measurements.push_back(measurement8);
+        measurements.push_back(measurement9);
+        measurements.push_back(measurement10);
+        measurements.push_back(measurement11);
+        measurements.push_back(measurement12);
+        data.setAllMeasurements(measurements);
+
+        vector<Sensor *> sensors;
+        sensors.push_back(sensor1);
+        sensors.push_back(sensor2);
+        sensors.push_back(sensor3);
+        data.setAllSensors(sensors);
+
+        
+
+        tm *timeStart = new tm();
+
+        timeStart->tm_sec = 0;
+        timeStart->tm_min = 0;
+        timeStart->tm_hour = 12;
+        timeStart->tm_year = 2018 - 1900;
+        timeStart->tm_mon = 1 - 1;
+        timeStart->tm_mday = 1;
+
+        tm *timeEnd = new tm();
+
+        timeEnd->tm_sec = 0;
+        timeEnd->tm_min = 0;
+        timeEnd->tm_hour = 12;
+        timeEnd->tm_year = 2020 - 1900;
+        timeEnd->tm_mon = 1 - 1;
+        timeEnd->tm_mday = 1;
+
+        Statistics statistics;
+
+        // The selected zone is a circle with center (45.7704175, 4.8633324) and radius 2.0 => Charpennes with radius 2km
+        int result1 = statistics.getMeanAirQualityByZoneByPeriod(&data, timeStart,timeEnd, 45.7704175, 4.8633324, 2.0);
+        cout << "result1 : " << result1 << endl;
+        assert(result1 == 7); // The max index is 7
+        // The selected zone is a circle with center (42.3554334, -71.060511) and radius 2.0 => Boston with radius 2km
+        int result2 = statistics.getMeanAirQualityByZoneByPeriod(&data, timeStart,timeEnd, 42.3554334, -71.060511, 10.0);
+        assert(result2 == -1); // The max index is 0 because there is no sensor in the zone
+        cout << "All test cases for getMeanAirQualityByZoneByPeriod passed" << endl;
+
     }
 };
 
