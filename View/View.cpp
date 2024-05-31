@@ -47,9 +47,11 @@ void View::StartApplication()
         double radius;
         vector<Sensor*> similarSensors;
         string mesurementType;
+        int meanAirQuality;
+        Sensor* sensor;
 
-
-        cout << "Welcome to the Air Quality Index application" << endl;
+        cout << "================================================" << endl;
+        cout << "Welcome to the Air Watcher application" << endl;
         cout << "================================================" << endl;
         cout << "Choose a function to execute" << endl;
         cout << "------------------------------------------------" << endl;
@@ -91,7 +93,7 @@ void View::StartApplication()
                 getline(ss, year, '-');
                 getline(ss, month, '-');
                 getline(ss, day, '-');
-                end = new tm();
+                
                 end->tm_sec = 0;
                 end->tm_min = 0;
                 end->tm_hour = 0;
@@ -103,7 +105,7 @@ void View::StartApplication()
                 longitude = stod(parameters[3]);
                 radius = stod(parameters[4]);
 
-                int meanAirQuality = controller->getMeanAirQualityByZoneByPeriod(data, start, end, latitude, longitude, radius);
+                meanAirQuality = controller->getMeanAirQualityByZoneByPeriod(data, start, end, latitude, longitude, radius);
                 
                 if(meanAirQuality == -1)
                 {
@@ -138,7 +140,7 @@ void View::StartApplication()
                 longitude = stod(parameters[2]);
                 radius = stod(parameters[3]);
 
-                int meanAirQuality = controller->getMeanAirQualityByZoneByTime(data, time, latitude, longitude, radius);
+                meanAirQuality = controller->getMeanAirQualityByZoneByTime(data, time, latitude, longitude, radius);
 
                 if(meanAirQuality == -1)
                 {
@@ -150,11 +152,11 @@ void View::StartApplication()
                 break;
 
             case 3:
-                Sensor* sensor = nullptr;
+                sensor = nullptr;
                 while(sensor == nullptr)
                 {
                     DisplayAllSensors(data->getAllSensors());
-                    Sensor* sensor = getChosenSensor(data->getAllSensors());
+                    sensor = getChosenSensor(data->getAllSensors());
                 }
                 parameters = getParametersOfGetSimilarSensors();
 
@@ -241,12 +243,14 @@ void View::DisplaySimilarSensors(vector<Sensor*> sensors, Sensor* sensor)
     }
 }
 
+
+
 Sensor *View::getChosenSensor(vector<Sensor*> sensors)
 {
     int choice;
     cout << "Please enter the number of the sensor you want to get similar sensors for: ";
     cin >> choice;
-    if(choice >= 0 && choice < sensors.size())
+    if(choice >= 0 && static_cast<vector<Sensor*>::size_type>(choice) < sensors.size())
     {
         return sensors[choice];
     }
@@ -294,6 +298,24 @@ vector<string> View::getParametersOfGetMeanAirQualityByZoneByTime()
     parameters.push_back(to_string(latitude));
     parameters.push_back(to_string(longitude));
     parameters.push_back(to_string(radius));
+
+    return parameters;
+}
+
+vector<string> View::getParametersOfGetSimilarSensors()
+{
+    vector<string> parameters;
+    string start, end, measurementType;
+    cout << "Please enter the type of measurement you want to compare (PM10, O3, NO2, SO2): ";
+    cin >> measurementType;
+    cout << "Please enter the start date of the period (format: YYYY-MM-DD): ";
+    cin >> start;
+    cout << "Please enter the end date of the period (format: YYYY-MM-DD): ";
+    cin >> end;
+    parameters.push_back(measurementType);
+    parameters.push_back(start);
+    parameters.push_back(end);
+
 
     return parameters;
 }

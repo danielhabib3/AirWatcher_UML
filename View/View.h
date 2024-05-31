@@ -2,7 +2,7 @@
 #define VIEW_H
 
 #include <vector>
-#include "Controller.h"
+#include "../Control/Controller.h"
 
 class View
 {
