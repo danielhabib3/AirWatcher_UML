@@ -42,3 +42,8 @@ vector<Sensor*> Controller::getSimilarSensors(Sensor* sensor, Data *data, string
 {
 	return sensor->getSimilarSensors(data, measurementType, timeStart, timeEnd);
 }
+
+Data* Controller::getData() const
+{
+    return this->data;
+}

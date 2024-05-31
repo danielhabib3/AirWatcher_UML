@@ -51,7 +51,7 @@ public:
      */
     vector<Sensor*> getSimilarSensors(Sensor* sensor, Data *data, string measurementType, tm* timeStart, tm* timeEnd) const;
 
-protected:
+    Data* getData() const;
 
 private:
     CsvParser *csv;
