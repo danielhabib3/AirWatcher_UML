@@ -10,7 +10,7 @@ PrivateIndividual::PrivateIndividual(const PrivateIndividual &unPrivateIndividua
 #endif
 }
 
-PrivateIndividual::PrivateIndividual(string unPrivateIndividualId, Sensor *unSensor, bool isTrustable, int nbPoints) : privateIndividualId(unPrivateIndividualId), sensor(unSensor), trustable(isTrustable), points(nbPoints)
+PrivateIndividual::PrivateIndividual(string unPrivateIndividualId, vector<Sensor *> sensors, bool isTrustable, int nbPoints) : privateIndividualId(unPrivateIndividualId), sensors(sensors), trustable(isTrustable), points(nbPoints)
 {
 #ifdef MAP
     cout << "Appel au constructeur de <PrivateIndividual>" << endl;
@@ -24,9 +24,9 @@ PrivateIndividual::~PrivateIndividual()
 #endif
 }
 
-Sensor *PrivateIndividual::getSensor() const
+vector<Sensor *> PrivateIndividual::getSensors() const
 {
-    return sensor;
+    return sensors;
 }
 
 string PrivateIndividual::getPrivateIndividualId() const

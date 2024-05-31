@@ -12,7 +12,7 @@ class Measurement
 
 public:
     Measurement(const Measurement &unMeasurement);
-    Measurement(Sensor* sensor, string type, double value, string timeString);
+    Measurement(Sensor *sensor, string type, double value, string timeString);
     virtual ~Measurement();
     Sensor *getSensor() const;
     string getType() const;

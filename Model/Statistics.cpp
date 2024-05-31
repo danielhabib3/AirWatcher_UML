@@ -55,6 +55,10 @@ int Statistics::calculateAirQuality(double cSo2, double cNo2, double cPm10, doub
 
 int Statistics::calculateIndexSo2(double concentration)
 {
+    if (concentration < 0)
+    {
+        return -1;
+    }
     if (concentration <= 39)
     {
         return 1;
@@ -99,6 +103,10 @@ int Statistics::calculateIndexSo2(double concentration)
 
 int Statistics::calculateIndexNo2(double concentration)
 {
+    if (concentration < 0)
+    {
+        return -1;
+    }
     if (concentration <= 29)
     {
         return 1;
@@ -143,6 +151,10 @@ int Statistics::calculateIndexNo2(double concentration)
 
 int Statistics::calculateIndexPm10(double concentration)
 {
+    if (concentration < 0)
+    {
+        return -1;
+    }
     if (concentration <= 6)
     {
         return 1;
