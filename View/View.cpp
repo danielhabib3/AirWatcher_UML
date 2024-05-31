@@ -29,7 +29,12 @@ void View::StartApplication()
     // Instantiate the controller
     Controller* controller = new Controller();
     Data* data = controller->getData();
+    cout << data->getAllMeasurements().size() << endl; 
     
+    cout << "================================================" << endl;
+    cout << "Welcome to the Air Watcher application" << endl;
+    cout << "================================================" << endl;
+
     while(1)
     {
         // Declare variables
@@ -50,8 +55,7 @@ void View::StartApplication()
         int meanAirQuality;
         Sensor* sensor;
 
-        cout << "================================================" << endl;
-        cout << "Welcome to the Air Watcher application" << endl;
+        
         cout << "================================================" << endl;
         cout << "Choose a function to execute" << endl;
         cout << "------------------------------------------------" << endl;
@@ -73,9 +77,14 @@ void View::StartApplication()
                 // Get the parameters for the method getMeanAirQualityByZoneByPeriod
                 // L'ordre des parametres est le suivant: data - start - end - lat - lon - radius
                 parameters = getParametersOfGetMeanAirQualityByZoneByPeriod();
-                
+                cout << parameters[0] << endl;
+                cout << parameters[1] << endl;
+                cout << parameters[2] << endl;
+                cout << parameters[3] << endl;
+                cout << parameters[4] << endl;
+
                 // Call the method getMeanAirQualityByZoneByPeriod with the parameters
-                ss.str(""); ss.clear();  year.clear(); month.clear(); day.clear(); // Réinitialiser le ss, year, month, day
+                //ss.str(""); ss.clear();  year.clear(); month.clear(); day.clear(); // Réinitialiser le ss, year, month, day
                 ss << parameters[0] << '-';
                 getline(ss, year, '-');
                 getline(ss, month, '-');
@@ -88,7 +97,7 @@ void View::StartApplication()
                 start->tm_mon = stoi(month) - 1;
                 start->tm_mday = stoi(day);
 
-                ss.str(""); ss.clear(); year.clear(); month.clear(); day.clear(); // Réinitialiser le ss, year, month, day
+                //ss.str(""); ss.clear(); year.clear(); month.clear(); day.clear(); // Réinitialiser le ss, year, month, day
                 ss << parameters[1] << '-';
                 getline(ss, year, '-');
                 getline(ss, month, '-');
@@ -105,8 +114,10 @@ void View::StartApplication()
                 longitude = stod(parameters[3]);
                 radius = stod(parameters[4]);
 
+                // cout << "start: " << start->tm_year << "-" << start->tm_mon << "-" << start->tm_mday << endl;
                 meanAirQuality = controller->getMeanAirQualityByZoneByPeriod(data, start, end, latitude, longitude, radius);
-                
+
+                cout << "================================================" << endl;
                 if(meanAirQuality == -1)
                 {
                     cout << "No data available for the specified time and zone" << endl;
@@ -142,6 +153,8 @@ void View::StartApplication()
 
                 meanAirQuality = controller->getMeanAirQualityByZoneByTime(data, time, latitude, longitude, radius);
 
+
+                cout << "================================================" << endl;
                 if(meanAirQuality == -1)
                 {
                     cout << "No data available for the specified time and zone" << endl;

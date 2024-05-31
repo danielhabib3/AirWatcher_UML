@@ -19,7 +19,6 @@ public:
     CsvParser();
     virtual ~CsvParser();
 
-protected:
 private:
     vector<Sensor *> createSensors();
     vector<Cleaner *> createCleaners();
