@@ -50,4 +50,6 @@ statTest:
 
 clean: 
 	rm ./bin/*.o
-	rm exe	
+	rm exe
+	rm sensorTest
+	rm statTest
