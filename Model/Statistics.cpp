@@ -262,8 +262,6 @@ int Statistics::getMeanAirQualityByZoneByPeriod(Data *data, tm *start, tm *end, 
             {
                 if (measurement->getType() == "SO2")
                 {
-                    cout << "SO2 : " << measurement->getValue() << endl;
-                    cout <<"SO2 mean : " << meanConcentrationSo2 << endl;
                     meanConcentrationSo2 += measurement->getValue();
                     countSo2++;
                 }
@@ -316,11 +314,6 @@ int Statistics::getMeanAirQualityByZoneByPeriod(Data *data, tm *start, tm *end, 
     if(countSo2 == 0 && countNo2 == 0 && countPm10 == 0 && countO3 == 0){
         return -1;
     }
-
-    cout << "meanConcentrationSo2 : " << meanConcentrationSo2 << endl;
-    cout << "meanConcentrationNo2 : " << meanConcentrationNo2 << endl;
-    cout << "meanConcentrationPm10 : " << meanConcentrationPm10 << endl;
-    cout << "meanConcentrationO3 : " << meanConcentrationO3 << endl;
 
     return this->calculateAirQuality(meanConcentrationSo2, meanConcentrationNo2, meanConcentrationPm10, meanConcentrationO3);
 }
