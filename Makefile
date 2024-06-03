@@ -49,7 +49,7 @@ statTest:
 	g++ -o statTest ./Model/Statistics.cpp ./Test/StatisticsTest.cpp ./Model/Measurement.cpp ./Model/PrivateIndividual.cpp ./Model/Data.cpp ./Model/Sensor.cpp ./Model/User.cpp $(CCFLAGS)
 
 clean: 
-	rm ./bin/*.o
-	rm exe
-	rm sensorTest
-	rm statTest
+	rm -f ./bin/*.o
+	rm -f exe
+	rm -f sensorTest
+	rm -f statTest
