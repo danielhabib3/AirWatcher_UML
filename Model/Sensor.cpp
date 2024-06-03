@@ -78,19 +78,13 @@ PrivateIndividual *Sensor::getPrivateIndividualLinkToTheSensor(Data *data) const
     return nullptr;
 }
 
-struct customCompare
-{
-    bool operator()(const pair<double, double> &sensor1, const pair<double, double> &sensor2) const
-    {
-        return (sensor1.second / sensor1.first) < (sensor2.second / sensor2.first);
-    }
-};
 
-vector<Sensor *> Sensor::getSimilarSensors(Data *data, string measurementType, tm *timeStart, tm *timeEnd) const
+
+vector<Sensor *> Sensor::getSimilarSensors(Data *data, string measurementType, tm *timeStart, tm *timeEnd) 
 {
     vector<Sensor *> similarSensors;
     map<Sensor *, pair<double, double> > unSortedSensors;              // pair<counter, sumIndex>
-    map<pair<double, double>, Sensor *, customCompare> sortedSensors; // pair<counter, sumIndex>
+    
 
     for (Measurement *m : data->getAllMeasurements())
     {
@@ -108,6 +102,22 @@ vector<Sensor *> Sensor::getSimilarSensors(Data *data, string measurementType, t
             }
         }
     }
+    
+    double meanSensorToCompare = unSortedSensors[this].second/unSortedSensors[this].first;
+
+    struct customCompare
+    {
+        double meanSensorToCompare;
+
+        customCompare(double mean) : meanSensorToCompare(mean) {}
+        bool operator()(const pair<double, double> &sensor1, const pair<double, double> &sensor2) const
+        {
+            return abs((sensor1.second / sensor1.first)-meanSensorToCompare) < abs((sensor2.second / sensor2.first)-meanSensorToCompare);
+        }
+    };
+
+    auto comparator = customCompare(meanSensorToCompare);
+    map<pair<double, double>, Sensor *, decltype(comparator)> sortedSensors(comparator); // pair<counter, sumIndex>
 
     for (map<Sensor *, pair<double, double> >::const_iterator it = unSortedSensors.begin(); it != unSortedSensors.end(); it++)
     {

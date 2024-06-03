@@ -52,7 +52,7 @@ public:
      * @param timeEnd the end time of the period to check the similarity
      * @return PrivateIndividual* the private individual linked to the sensor or null if no private individual is linked to the sensor
      */
-    vector<Sensor *> getSimilarSensors(Data *data, string measurementType, tm *timeStart, tm *timeEnd) const;
+    vector<Sensor *> getSimilarSensors(Data *data, string measurementType, tm *timeStart, tm *timeEnd);
 
 private:
     string sensorId;

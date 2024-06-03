@@ -42,6 +42,12 @@ exe : ./bin/Main.o ./bin/User.o ./bin/Agency.o ./bin/Cleaner.o ./bin/Sensor.o ./
 ./bin/Main.o : Main.cpp ./View/View.h
 	g++ -o ./bin/Main.o -c Main.cpp $(CCFLAGS)
 
+sensorTest: 
+	g++ -o sensorTest ./Model/Statistics.cpp ./Test/SensorTest.cpp ./Model/Measurement.cpp ./Model/PrivateIndividual.cpp ./Model/Data.cpp ./Model/Sensor.cpp ./Model/User.cpp $(CCFLAGS)
+
+statTest: 
+	g++ -o statTest ./Model/Statistics.cpp ./Test/StatisticsTest.cpp ./Model/Measurement.cpp ./Model/PrivateIndividual.cpp ./Model/Data.cpp ./Model/Sensor.cpp ./Model/User.cpp $(CCFLAGS)
+
 clean: 
 	rm ./bin/*.o
 	rm exe	

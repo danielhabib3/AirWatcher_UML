@@ -1,10 +1,10 @@
 #include <iostream>
 #include <cassert>
-#include "Statistics.h"
-#include "Measurement.h"
-#include "Sensor.h"
+#include "../Model/Statistics.h"
+#include "../Model/Measurement.h"
+#include "../Model/Sensor.h"
 
-// g++ -o statTest Statistics.cpp StatisticsTest.cpp Measurement.cpp PrivateIndividual.cpp Data.cpp Sensor.cpp User.cpp
+// g++ -o statTest ../Model/Statistics.cpp StatisticsTest.cpp ../Model/Measurement.cpp ../Model/PrivateIndividual.cpp ../Model/Data.cpp ../Model/Sensor.cpp ../Model/User.cpp
 
 // Classe de test pour Statistics
 class StatisticsTest

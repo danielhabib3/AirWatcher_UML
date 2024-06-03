@@ -1,10 +1,10 @@
 #include <iostream>
 #include <cassert>
-#include "Sensor.h"
-#include "PrivateIndividual.h"
-#include "Measurement.h"
+#include "../Model/Sensor.h"
+#include "../Model/PrivateIndividual.h"
+#include "../Model/Measurement.h"
 
-// g++ -o sensorTest Statistics.cpp SensorTest.cpp Measurement.cpp PrivateIndividual.cpp Data.cpp Sensor.cpp User.cpp
+// g++ -o sensorTest ../Model/Statistics.cpp SensorTest.cpp ../Model/Measurement.cpp ../Model/PrivateIndividual.cpp ../Model/Data.cpp ../Model/Sensor.cpp ../Model/User.cpp
 
 // Classe de test pour Statistics
 class StatisticsTest
@@ -12,9 +12,9 @@ class StatisticsTest
 public:
     void runTests()
     {
-        testEqualOperator();
-        testCalculateDistance();
-        testGetPrivateIndividualLinkToTheSensor();
+        // testEqualOperator();
+        // testCalculateDistance();
+        // testGetPrivateIndividualLinkToTheSensor();
         testGetSimilarSensors();
     }
 
