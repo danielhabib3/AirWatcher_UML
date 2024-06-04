@@ -97,6 +97,7 @@ void View::StartApplication()
                 getline(ss, month, '-');
                 getline(ss, day, '-');
                 
+                end = new tm();
                 end->tm_sec = 0;
                 end->tm_min = 0;
                 end->tm_hour = 0;
@@ -108,6 +109,7 @@ void View::StartApplication()
                 longitude = stod(parameters[3]);
                 radius = stod(parameters[4]);
 
+                cout << "start : " << start << " end : " << end << " latitude : " << latitude << " longitude : " << longitude << " radius : " << radius << endl;
                 meanAirQuality = controller->getMeanAirQualityByZoneByPeriod(data, start, end, latitude, longitude, radius);
 
                 cout << "================================================" << endl;
@@ -119,6 +121,8 @@ void View::StartApplication()
 
                 // Display the result
                 cout << "The mean air quality index during the period in the zone is: " << meanAirQuality << endl;
+                delete start;
+                delete end;
                 break;
             
             case 2:
@@ -155,6 +159,7 @@ void View::StartApplication()
                 }
                 // Display the result
                 cout << "The mean air quality index during that time in the zone is: " << meanAirQuality << endl;
+                delete time;
                 break;
 
             case 3:
@@ -204,6 +209,8 @@ void View::StartApplication()
                     break;
                 }
                 DisplaySimilarSensors(similarSensors, sensor);
+                delete start;
+                delete end;
                 break;
             
             case 4:

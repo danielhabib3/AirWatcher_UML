@@ -68,9 +68,49 @@ tm *Measurement::getTime() const
 
 bool Measurement::isInPeriod(tm *start, tm *end)
 {
-    time_t t = mktime(time);
-    time_t tStart = mktime(start);
-    time_t tEnd = mktime(end);
+    // time_t t = mktime(time);
+    // time_t tStart = mktime(start);
+    // time_t tEnd = mktime(end);
 
-    return t >= tStart && t <= tEnd;
+    // return t >= tStart && t <= tEnd;
+    int yearStart = start->tm_year;	
+    int yearEnd = end->tm_year;
+    int monthStart = start->tm_mon;
+    int monthEnd = end->tm_mon;
+    int dayStart = start->tm_mday;
+    int dayEnd = end->tm_mday;
+
+    if (time->tm_year < yearStart || time->tm_year > yearEnd)
+    {
+        return false;
+    }
+    else if (time->tm_year == yearStart)
+    {
+        if (time->tm_mon < monthStart)
+        {
+            return false;
+        }
+        else if (time->tm_mon == monthStart)
+        {
+            if (time->tm_mday < dayStart)
+            {
+                return false;
+            }
+        }
+    }
+    else if (time->tm_year == yearEnd)
+    {
+        if (time->tm_mon > monthEnd)
+        {
+            return false;
+        }
+        else if (time->tm_mon == monthEnd)
+        {
+            if (time->tm_mday > dayEnd)
+            {
+                return false;
+            }
+        }
+    }
+    return true;
 }
