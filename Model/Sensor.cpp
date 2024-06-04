@@ -91,14 +91,24 @@ vector<Sensor *> Sensor::getSimilarSensors(Data *data, string measurementType, t
         if (m->isInPeriod(timeStart, timeEnd) && m->getType() == measurementType)
         {
             Sensor *sensor = m->getSensor();
-            if (unSortedSensors.find(sensor) == unSortedSensors.end())
+            PrivateIndividual* p = sensor->getPrivateIndividualLinkToTheSensor(data); // to check if the sensor is linked to a private individual (if not, we don't take it into account
+            if ((p == nullptr) || (p != nullptr && p->getTrustable()))
             {
-                unSortedSensors[sensor] = make_pair(1.0, m->getValue());
-            }
-            else
-            {
-                unSortedSensors[sensor].first++;
-                unSortedSensors[sensor].second += m->getValue();
+                if (unSortedSensors.find(sensor) == unSortedSensors.end())
+                {
+                    unSortedSensors[sensor] = make_pair(1.0, m->getValue());
+                }
+                else
+                {
+                    unSortedSensors[sensor].first++;
+                    unSortedSensors[sensor].second += m->getValue();
+                }
+
+                // If the sensor is linked to a private individual we increment his number of points
+                if (p != nullptr)
+                {
+                    p->setPoints(p->getPoints() + 1);
+                }
             }
         }
     }

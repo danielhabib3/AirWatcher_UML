@@ -200,6 +200,10 @@ int Statistics::calculateIndexPm10(double concentration)
 
 int Statistics::calculateIndexO3(double concentration)
 {
+    if (concentration < 0)
+    {
+        return -1;
+    }
     if (concentration <= 29)
     {
         return 1;
@@ -281,7 +285,7 @@ int Statistics::getMeanAirQualityByZoneByPeriod(Data *data, tm *start, tm *end, 
                     countO3++;
                 }
 
-                // If the sensor is linked to a private individual we increment his number of point
+                // If the sensor is linked to a private individual we increment his number of points
                 if (privateIndividual != nullptr)
                 {
                     privateIndividual->setPoints(privateIndividual->getPoints() + 1);

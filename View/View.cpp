@@ -3,6 +3,15 @@ using namespace std;
 
 #include "View.h"
 
+const std::string RESET = "\033[0m";
+const std::string RED = "\033[31m";
+const std::string GREEN = "\033[32m";
+const std::string YELLOW = "\033[33m";
+const std::string BLUE = "\033[34m";
+const std::string MAGENTA = "\033[35m";
+const std::string CYAN = "\033[36m";
+const std::string WHITE = "\033[37m";
+
 View::View ( const View & unView )
 {
 #ifdef MAP
@@ -24,16 +33,29 @@ View::~View ( )
 #endif
 }
 
-void View::StartApplication()
+PrivateIndividual *View::ConnectionPrivateIndividual(Data* data)
 {
-    // Instantiate the controller
-    Controller* controller = new Controller();
-    Data* data = controller->getData();
-    
+    int c = 1;
     cout << "================================================" << endl;
-    cout << "Welcome to the Air Watcher application" << endl;
+    for(PrivateIndividual* privateIndividual : data->getAllPrivateIndividuals())
+    {
+        cout << c << ". " << privateIndividual->getPrivateIndividualId() << endl;
+        c++;
+    }
     cout << "================================================" << endl;
+    cout << "Please enter the number of your private individual id: ";
+    int choice;
+    cin >> choice;
+    if(choice >= 1 && static_cast<vector<PrivateIndividual*>::size_type>(choice) <= data->getAllPrivateIndividuals().size())
+    {
+        return data->getAllPrivateIndividuals()[choice - 1];
+    }
+    return nullptr;
+}
 
+void View::AgencyInterface(Controller *controller, Data *data)
+{
+    cout << "Welcome, Agent" << endl;
     while(1)
     {
         // Declare variables
@@ -53,6 +75,10 @@ void View::StartApplication()
         string mesurementType;
         int meanAirQuality;
         Sensor* sensor;
+        chrono::duration<double> duration;
+        chrono::time_point<std::chrono::high_resolution_clock> startAlgo;
+        chrono::time_point<std::chrono::high_resolution_clock> endAlgo;
+
 
         
         cout << "================================================" << endl;
@@ -61,7 +87,7 @@ void View::StartApplication()
         cout << "1. Get the mean air quality index during a period of time for a specific zone" << endl;
         cout << "2. Get the mean air quality index at a specific time for a specific zone" << endl;
         cout << "3. Get the sensors that are similar to a specific sensor" << endl;
-        cout << "4. Exit application" << endl;
+        cout << "4. Disconnect" << endl;
         cout << "================================================" << endl;
 
         cout << "Enter the number of the function you want to execute: ";
@@ -109,18 +135,32 @@ void View::StartApplication()
                 longitude = stod(parameters[3]);
                 radius = stod(parameters[4]);
 
-                cout << "start : " << start << " end : " << end << " latitude : " << latitude << " longitude : " << longitude << " radius : " << radius << endl;
+                startAlgo = chrono::high_resolution_clock::now();
                 meanAirQuality = controller->getMeanAirQualityByZoneByPeriod(data, start, end, latitude, longitude, radius);
+                endAlgo = chrono::high_resolution_clock::now();
+                duration = endAlgo - startAlgo;
 
                 cout << "================================================" << endl;
                 if(meanAirQuality == -1)
                 {
-                    cout << "No data available for the specified time and zone" << endl;
+                    cout << RED << "No data available for the specified time and zone" << RESET << endl;
+                    cout << BLUE << "Time taken by the algorithm: " << duration.count() << " seconds" << RESET << endl;
                     break;
                 }
 
                 // Display the result
                 cout << "The mean air quality index during the period in the zone is: " << meanAirQuality << endl;
+                if(meanAirQuality == 1) cout << "Excellent" << endl;
+                else if(meanAirQuality == 2) cout << GREEN << "Excellent" << RESET << endl;
+                else if(meanAirQuality == 3) cout << GREEN << "Very good" << RESET << endl;
+                else if(meanAirQuality == 4) cout << GREEN << "Very good" << RESET << endl;
+                else if(meanAirQuality == 5) cout << YELLOW << "Average" << RESET << endl;
+                else if(meanAirQuality == 6) cout << YELLOW << "Mediocre" << RESET << endl;	
+                else if(meanAirQuality == 7) cout << YELLOW << "Mediocre" << RESET << endl;
+                else if(meanAirQuality == 8) cout << RED << "Bad" << RESET << endl;	
+                else if(meanAirQuality == 9) cout << RED << "Bad" << RESET << endl;
+                else if(meanAirQuality == 10) cout << RED << "Very bad" << RESET << endl;
+                cout << BLUE << "Time taken by the algorithm: " << duration.count() << " seconds" << RESET << endl;
                 delete start;
                 delete end;
                 break;
@@ -148,17 +188,32 @@ void View::StartApplication()
                 longitude = stod(parameters[2]);
                 radius = stod(parameters[3]);
 
+                startAlgo = chrono::high_resolution_clock::now();
                 meanAirQuality = controller->getMeanAirQualityByZoneByTime(data, time, latitude, longitude, radius);
+                endAlgo = chrono::high_resolution_clock::now();
+                duration = endAlgo - startAlgo;
 
 
                 cout << "================================================" << endl;
                 if(meanAirQuality == -1)
                 {
-                    cout << "No data available for the specified time and zone" << endl;
+                    cout << RED << "No data available for the specified time and zone" << RESET << endl;
+                    cout << BLUE << "Time taken by the algorithm: " << duration.count() << " seconds" << RESET << endl;
                     break;
                 }
                 // Display the result
                 cout << "The mean air quality index during that time in the zone is: " << meanAirQuality << endl;
+                if(meanAirQuality == 1) cout << "Excellent" << endl;
+                else if(meanAirQuality == 2) cout << GREEN << "Excellent" << RESET << endl;
+                else if(meanAirQuality == 3) cout << GREEN << "Very good" << RESET << endl;
+                else if(meanAirQuality == 4) cout << GREEN << "Very good" << RESET << endl;
+                else if(meanAirQuality == 5) cout << YELLOW << "Average" << RESET << endl;
+                else if(meanAirQuality == 6) cout << YELLOW << "Mediocre" << RESET << endl;	
+                else if(meanAirQuality == 7) cout << YELLOW << "Mediocre" << RESET << endl;
+                else if(meanAirQuality == 8) cout << RED << "Bad" << RESET << endl;	
+                else if(meanAirQuality == 9) cout << RED << "Bad" << RESET << endl;
+                else if(meanAirQuality == 10) cout << RED << "Very bad" << RESET << endl;
+                cout << BLUE << "Time taken by the algorithm: " << duration.count() << " seconds" << RESET << endl;	
                 delete time;
                 break;
 
@@ -200,15 +255,19 @@ void View::StartApplication()
                 end->tm_mon = stoi(month) - 1;
                 end->tm_mday = stoi(day);
 
-
+                startAlgo = chrono::high_resolution_clock::now();
                 similarSensors = controller->getSimilarSensors(sensor, data, mesurementType, start, end);
+                endAlgo = chrono::high_resolution_clock::now();
+                duration = endAlgo - startAlgo;
 
                 if(similarSensors.size() == 0)
                 {
-                    cout << "No similar sensors found" << endl;
+                    cout << RED << "No similar sensors found" << RESET << endl;
+                    cout << BLUE << "Time taken by the algorithm: " << duration.count() << " seconds" << RESET << endl;
                     break;
                 }
                 DisplaySimilarSensors(similarSensors, sensor);
+                cout << BLUE << "Time taken by the algorithm: " << duration.count() << " seconds" << RESET << endl;
                 delete start;
                 delete end;
                 break;
@@ -223,6 +282,86 @@ void View::StartApplication()
             break;
         }
     }
+}
+
+void View::PrivateIndividualInterface(Controller* controller, Data* data, PrivateIndividual* privateIndividual)
+{
+    while(1)
+    {
+        cout << "================================================" << endl;
+        cout << "1. View my points" << endl;
+        cout << "2. Disconnect" << endl;
+        cout << "================================================" << endl;
+        cout << "Enter the number of the function you want to execute: ";
+        int choice; 
+        cin >> choice;
+        cout << endl;
+        bool exit = false;
+        switch(choice)
+        {
+            case 1:
+                cout << "Your points: " << privateIndividual->getPoints() << endl;
+                break;
+            case 2:
+                exit = true;
+                break;
+        }
+        if(exit)
+        {
+            break;
+        }
+    }
+}
+
+
+void View::StartApplication()
+{
+    // Instantiate the controller
+    Controller* controller = new Controller();
+    Data* data = controller->getData();
+
+    cout << "================================================" << endl;
+    cout << "Welcome to the Air Watcher application" << endl;
+    cout << "================================================" << endl;
+    while(1)
+    {
+        PrivateIndividual* privateIndividual;
+
+        cout << "================================================" << endl;
+        cout << "Please identify yourself" << endl;
+        cout << "1. Agency Member" << endl;
+        cout << "2. Private Individual" << endl;
+        cout << "3. Exit application" << endl;	
+        cout << "================================================" << endl;
+
+        cout << "Enter the number corresponding to the type of user you are: ";
+        int choice;
+
+        cin >> choice;
+        cout << endl;
+        bool exit = false;
+        
+        switch(choice)
+        {
+            case 1:
+                AgencyInterface(controller, data);
+                break;
+            case 2:
+                privateIndividual = ConnectionPrivateIndividual(data);
+                PrivateIndividualInterface(controller, data, privateIndividual);
+                break;
+            case 3:
+                exit = true;
+                break;
+        }
+        if(exit)
+        {
+            break;
+        }
+    }
+    
+
+
     DisplayExitMessage();
     delete controller;
 }
@@ -247,8 +386,13 @@ void View::DisplayAllSensors(vector<Sensor*> sensors)
 
 void View::DisplaySimilarSensors(vector<Sensor*> sensors, Sensor* sensor)
 {
+    if(sensors.size() == 1)
+    {
+        cout << RED << "No similar sensors found for the selected time and zone" << RESET << endl;
+        return;
+    }
     int c = 0;
-    cout << "List of all sensors that are similar to " << sensor->getSensorId() << ": " << endl;
+    cout << endl << "List of all sensors that are similar to " << sensor->getSensorId() << ": - ranked by similarity " << endl;
     for(Sensor *sensor : sensors)
     {
         cout << c << ". " << sensor->getSensorId() << endl;

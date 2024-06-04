@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "../Control/Controller.h"
+#include <chrono>
 
 class View
 {
@@ -41,6 +42,9 @@ private:
     */
     vector<string> getParametersOfGetMeanAirQualityByZoneByTime();
 
+    PrivateIndividual* ConnectionPrivateIndividual(Data* data);
+    void AgencyInterface(Controller* controller, Data* data);
+    void PrivateIndividualInterface(Controller* controller, Data* data, PrivateIndividual* privateIndividual);
     void DisplayExitMessage();
 
     /**
