@@ -4,3 +4,5 @@ exe
 ./bin/*.o
 SClasse.h
 SClasse.cpp
+statTest
+sensorTest
